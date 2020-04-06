@@ -21,10 +21,13 @@ class MyApp extends App {
           <title>Shopify Tailwind Test</title>
           <meta charSet="utf-8" />
         </Head>
-        <Component {...pageProps} />
+        <ApolloProvider client={client}>
+          <Component {...pageProps} />
+        </ApolloProvider>
       </React.Fragment>
     );
   }
 }
+
 
 export default MyApp;
