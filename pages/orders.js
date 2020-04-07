@@ -1,3 +1,4 @@
+import react, {useState} from "react";
 import gql from 'graphql-tag';
 import { Query } from 'react-apollo';
 import _ from "lodash"
@@ -60,32 +61,60 @@ const GET_ORDERS = gql`
     .get("value")
     .value();
   } 
-
+  const getOrderName = (edge) => {
+    return edge.node.name
+  }
+    const getFulFillmentStatus = (edge) => {
+    return edge.node.displayFulfillmentStatus
+  }
+  const getCustomerFullName = (edge) => {
+    return `${edge.node.customer.firstName} ${edge.node.customer.lastName}`
+  }
+  const getCustomerEmail = (edge) => {
+    return edge.node.customer.email
+  }
+  const getCustomerNote = (edge) => {
+    return edge.node.customer.note
+  }
+  const getOrderCreationTime = (edge) => {
+    return edge.node.createdAt
+  }
+  
 const Orders = () => {
+
+  const [method, setMethod] = useState('')
 
   return (
     <>
-    <h1>Unfulfilled Orders</h1>
+    <div>
+    <h1>Orders</h1>
+    <div>
+      <button className={"bg-transparent font-semibold hover:text-white py-2 px-4 border border-black-500 rounded"} onClick={() => setMethod("pickup")}>Pickups</button>
+      <button className={"bg-transparent font-semibold hover:text-white py-2 px-4 border border-black-500 rounded"} onClick={() => setMethod("delivery")}>Deliveries</button>
+      <button className={"bg-transparent font-semibold hover:text-white py-2 px-4 border border-black-500 rounded"} onClick={() => setMethod("shipping")}>To Ship</button>
+    </div>
+    </div>
     <Query query={GET_ORDERS}>
       {({ data, loading, error }) => {
         if (loading) return <div>Loading…</div>;
         if (error) return <div>{error.message}</div>;
-        // console.log(data.orders.edges);
 
         const dataArray = data.orders.edges
-        console.log(dataArray)
 
-        return data.orders.edges.map((edge) => (
-        <div key={edge.node.name} className="border p-2">
-          <h2>Method: {getCheckoutMethod(edge)}</h2>
-          <h2>Order Name: {edge.node.name}</h2>
-          <h4>Status: {edge.node.displayFulfillmentStatus}</h4>
-          <h3>Customer Name: {edge.node.customer.firstName} {edge.node.customer.lastName}</h3>
-          <h3>Customer Email: {edge.node.customer.email}</h3>
-          {edge.node.note && <h4>Customer message: {edge.node.note}</h4>}
-          <h4>Time Created: {edge.node.createdAt}</h4>
-        </div>
-        ))
+        return dataArray.map((edge) => (
+          getCheckoutMethod(edge) === method &&
+          <>
+          <div key={edge.node.name} className="border p-2">
+            <h2>Order Name: {getOrderName(edge)}</h2>
+            <h4>Status: {getFulFillmentStatus(edge)}</h4>
+            <h2>Method: {getCheckoutMethod(edge)}</h2>
+            <h3>Customer Name: {getCustomerFullName(edge)}</h3>
+            <h3>Customer Email: {getCustomerEmail(edge)}</h3>
+            {edge.node.note && <h4>Customer Note: {getCustomerNote(edge)}</h4>}
+            <h4>Time Created: {getOrderCreationTime(edge)}</h4>
+          </div>
+          </>
+        )) 
       }}
     </Query>
     </>
