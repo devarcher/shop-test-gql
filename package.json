@@ -15,6 +15,7 @@
     "@shopify/koa-shopify-graphql-proxy": "^3.3.1",
     "@zeit/next-css": "^1.0.1",
     "apollo-boost": "^0.4.7",
+    "date-fns": "^2.11.1",
     "dotenv": "^8.2.0",
     "graphql": "^15.0.0",
     "graphql-tag": "^2.10.3",
@@ -23,13 +24,13 @@
     "koa": "^2.11.0",
     "koa-session": "^5.13.1",
     "lodash": "^4.17.15",
-    "moment": "^2.24.0",
     "next": "9.3.4",
     "postcss-preset-env": "^6.7.0",
-    "prettier": "^2.0.3",
+    "prettier": "^2.0.4",
     "react": "16.13.1",
     "react-apollo": "^3.1.4",
     "react-dom": "16.13.1",
     "tailwindcss": "^1.2.0"
-  }
+  },
+  "devDependencies": {}
 }
