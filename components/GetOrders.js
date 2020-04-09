@@ -1,6 +1,6 @@
 import gql from "graphql-tag";
-import { Query } from "react-apollo";
-import Orders from "../pages/orders";
+import { useQuery } from "react-apollo";
+import Orders from "./Orders";
 
 const GET_ORDERS = gql`
   {
@@ -41,21 +41,22 @@ const GET_ORDERS = gql`
   }
 `;
 
-const OrderQuery = () => {
+const GetOrders = () => {
+  // Apollo data
+  const { loading, error, data } = useQuery(GET_ORDERS, {
+    pollInterval: 30000,
+  });
+
+  if (loading) return null;
+  if (error) return `Error! ${error}`;
+
+  console.log("Get Orders", data);
+
   return (
-    <div>
-      <Query query={GET_ORDERS}>
-        {({ data, loading, error }) => {
-          if (loading) return <div>Loading…</div>;
-          if (error) return <div>{error.message}</div>;
-
-          const queryData = data.orders.edges;
-
-          return <Orders queryData={queryData} />;
-        }}
-      </Query>
-    </div>
+    <>
+      <Orders data={data} />
+    </>
   );
 };
 
-export default OrderQuery;
+export default GetOrders;
