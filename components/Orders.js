@@ -11,11 +11,12 @@ import {
   getCustomerFullName,
   getCustomerEmail,
   getCustomerNote,
-  getOrderCreationTime,
+  getOrderStatus,
 } from "../utils/getCustomAttributes";
 
 const Orders = (props) => {
   const { data } = props;
+  console.log("orders data", data);
   const [method, setMethod] = useState("");
 
   return (
@@ -60,7 +61,9 @@ const Orders = (props) => {
                   <h4>Due Date: {getDeliveryDates(edge)}</h4>
                   <h4>Due Time: {getDeliveryTimes(edge)}</h4>
                   <h5>Order id: {edge.node.id}</h5>
+                    {console.log(getOrderStatus(edge))}
                 </div>
+
                 <SelectStatus id={edge.node.id} />
               </div>
             )}

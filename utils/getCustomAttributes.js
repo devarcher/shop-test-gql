@@ -24,6 +24,12 @@ export const getDeliveryTimes = (edge) => {
     .get("value")
     .value();
 };
+export const getOrderStatus = (edge) => {
+  return _.chain(edge.node.metafields.edges)
+    .find({ key: "order_status" })
+    .get("value")
+    .value();
+};
 export const getOrderName = (edge) => {
   return edge.node.name;
 };

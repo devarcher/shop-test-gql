@@ -1,45 +1,6 @@
-import gql from "graphql-tag";
-import { useQuery } from "react-apollo";
 import Orders from "./Orders";
-
-const GET_ORDERS = gql`
-  {
-    shop {
-      id
-      name
-    }
-    orders(first: 10, query: "fulfillment_status:unshipped") {
-      edges {
-        node {
-          id
-          name
-          displayFulfillmentStatus
-          note
-          createdAt
-          lineItems(first: 10) {
-            edges {
-              node {
-                title
-                quantity
-              }
-            }
-          }
-          customer {
-            id
-            firstName
-            lastName
-            email
-            phone
-          }
-          customAttributes {
-            key
-            value
-          }
-        }
-      }
-    }
-  }
-`;
+import { useQuery } from "react-apollo";
+import { GET_ORDERS } from "../queries/queries";
 
 const GetOrders = () => {
   // Apollo data

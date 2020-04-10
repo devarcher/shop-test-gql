@@ -1,46 +1,46 @@
 import React, { useState } from "react";
-
-// const ORDER_UPDATE = gql`
-//   mutation orderUpdate($input: OrderInput!) {
-//     orderUpdate(input: $input) {
-//       order {
-//         id
-//       }
-//       userErrors {
-//         field
-//         message
-//       }
-//     }
-//   }
-// `;
+import { UPDATE_ORDER_STATUS } from "../queries/queries";
+import { useMutation } from "react-apollo";
 
 const selectStatus = (props) => {
   const { id } = props;
-  console.log("select status id", props);
-  console.log("desctructured id: ", id);
-
   const [orderStatus, setOrderStatus] = useState("");
 
-  const handleStatus = (e) => {
+  const [updateOrderStatus] = useMutation(UPDATE_ORDER_STATUS);
+
+  const handleUpdateStatus = (e) => {
     e.preventDefault();
     setOrderStatus(e.target.value);
+    updateOrderStatus({
+      variables: {
+        input: {
+          id: id,
+          "metafields": {
+            "namespace": "Order Status",
+            "key": "order_status",
+            "value": e.target.value,
+            "valueType": "STRING"
+          }
+        },
+      },
+    });
   };
 
-  console.log(orderStatus);
   return (
-    <div>
+    <div className={"p-2"}>
       <label htmlFor="order-status-select">Update Status:</label>
 
       <select
         name="status"
         value={orderStatus}
-        onChange={(e) => handleStatus(e)}
+        onChange={(e) => handleUpdateStatus(e)}
       >
         <option value="">--Status--</option>
         <option value="null">Cancelled</option>
         <option value="prep">In Prep</option>
         <option value="ready">Ready</option>
         <option value="notified">Customer Notified</option>
+        <option value="complete">Order Completed</option>
       </select>
     </div>
   );
