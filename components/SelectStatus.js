@@ -14,13 +14,8 @@ const selectStatus = (props) => {
     updateOrderStatus({
       variables: {
         input: {
-          id: id,
-          "metafields": {
-            "namespace": "Order Status",
-            "key": "order_status",
-            "value": e.target.value,
-            "valueType": "STRING"
-          }
+          "id": id,
+          "tags": e.target.value
         },
       },
     });

@@ -5,7 +5,7 @@ import { GET_ORDERS } from "../queries/queries";
 const GetOrders = () => {
   // Apollo data
   const { loading, error, data } = useQuery(GET_ORDERS, {
-    pollInterval: 30000,
+    pollInterval: 5000,
   });
 
   if (loading) return null;

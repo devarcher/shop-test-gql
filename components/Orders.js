@@ -61,7 +61,7 @@ const Orders = (props) => {
                   <h4>Due Date: {getDeliveryDates(edge)}</h4>
                   <h4>Due Time: {getDeliveryTimes(edge)}</h4>
                   <h5>Order id: {edge.node.id}</h5>
-                    {console.log(getOrderStatus(edge))}
+                  <h1>Order Status: {edge.node.tags}</h1>
                 </div>
 
                 <SelectStatus id={edge.node.id} />

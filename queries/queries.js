@@ -14,15 +14,7 @@ export const GET_ORDERS = gql`
           displayFulfillmentStatus
           note
           createdAt
-          metafields(first:10){
-          edges {
-          	node {
-              id
-              key
-              value
-            } 
-          }
-        }
+          tags           
           lineItems(first: 10) {
             edges {
               node {
