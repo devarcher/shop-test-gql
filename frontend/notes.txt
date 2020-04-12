@@ -1,0 +1,6 @@
+Use apollo server, with something like serverless offline to run locally. 
+The client (frontend) will request via GraphQL using an Apollo client the information it 
+needs from the back end server. The server will handle any communication to shopify and store it
+in your data base source. 
+
+
