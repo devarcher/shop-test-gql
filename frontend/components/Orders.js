@@ -15,12 +15,11 @@ import {
 } from "../utils/getCustomAttributes";
 import OrderContext from './OrderContext';
 
-const Orders = React.memo(() => {
+const Orders = (props) => {
+  const { data } = props;
   const [method, setMethod] = useState("");
 
-  // Getting Context
-  const { orderData, setOrderDataContext } = useContext(OrderContext);
-  console.log("orders data", orderData);
+  console.log("Orders", data)
 
   // Sort Array here by Time Tag? 
   // Sort here, and update the setOrderDataContext if not sorted.
@@ -52,8 +51,8 @@ const Orders = React.memo(() => {
           </button>
         </div>
       </div>
-      {orderData &&
-        orderData.orders.edges.map((edge) => (
+      {data &&
+        data.orders.edges.map((edge) => (
           <div key={edge.node.name}>
             {getCheckoutMethod(edge) === method && (
               <div className="border p-2 w-2/3 flex content-center">
@@ -81,7 +80,7 @@ const Orders = React.memo(() => {
         ))}
     </>
   );
-});
+};
 
 export default Orders;
 

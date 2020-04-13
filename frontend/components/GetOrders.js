@@ -1,8 +1,6 @@
 import Orders from "./Orders";
 import { useQuery } from "react-apollo";
 import { GET_ORDERS } from "../queries/queries";
-import useOrderContext from './OrderContext/useOrderContext';
-import OrderContext from './OrderContext';
 
 const GetOrders = () => {
   
@@ -29,15 +27,9 @@ const GetOrders = () => {
 
   console.log("Get Orders", data);
 
-  // For Context use
-  const orderDataDefault = useOrderContext(data);
-  console.log("data after context function: ", orderDataDefault)
-
   return (
     <>
-      <OrderContext.Provider value={orderDataDefault}>
-        <Orders data={data} />
-      </OrderContext.Provider>
+      <Orders data={data} />
     </>
   );
 };
