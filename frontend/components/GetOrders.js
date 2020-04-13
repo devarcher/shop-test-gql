@@ -16,22 +16,10 @@ const GetOrders = () => {
 
   // Temp Hardcoded query variable
   const hardCodedDate = '2020/04/12';
+  const hardCodedMethod = 'delivery'
 
   // Tag is date from hardCodedDate, and the tag Type is delivery.
-  const query = `tag:${hardCodedDate} AND tag:delivery`; 
-
-  /**
-   * 1: Sort at database level (Their Server/Our Server)
-   * 2: Sort at server level (Our Server) (Only if a back end server exists and is used/No direct shopify query)
-   * 3: Sort at response time (Client) <- Least optimal 
-   * 4: Sort at component render time (Client) <- Most optimal of client only.hardCodedDate
-   * 
-   * Consider using context if you're using the 4th option. Sort when it's rendered, this will
-   * keep the cpu cycles free when the data fetched so not to interfer with paint cycles.
-   * * Initialize context object with null. 
-   * * Any render check if context object has data before query. Only sort if from query, and not null. 
-   * * After rendering and sorting, ensure that the context object is updated with the sorted object.
-   */
+  const query = `tag:${hardCodedDate} AND tag:${hardCodedMethod}`; 
 
   // Apollo data
   const { data } = useQuery(GET_ORDERS, {
@@ -41,12 +29,14 @@ const GetOrders = () => {
 
   console.log("Get Orders", data);
 
+  // For Context use
   const orderDataDefault = useOrderContext(data);
+  console.log("data after context function: ", orderDataDefault)
 
   return (
     <>
       <OrderContext.Provider value={orderDataDefault}>
-        <Orders />
+        <Orders data={data} />
       </OrderContext.Provider>
     </>
   );

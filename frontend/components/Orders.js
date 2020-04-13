@@ -18,11 +18,12 @@ import OrderContext from './OrderContext';
 const Orders = React.memo(() => {
   const [method, setMethod] = useState("");
 
+  // Getting Context
   const { orderData, setOrderDataContext } = useContext(OrderContext);
   console.log("orders data", orderData);
 
   // Sort Array here by Time Tag? 
-  // Sort here, and upadte the setOrderDataContext if not sorted.
+  // Sort here, and update the setOrderDataContext if not sorted.
 
   // Make Date Selector - 
 
@@ -51,8 +52,8 @@ const Orders = React.memo(() => {
           </button>
         </div>
       </div>
-      {data &&
-        data.orders.edges.map((edge) => (
+      {orderData &&
+        orderData.orders.edges.map((edge) => (
           <div key={edge.node.name}>
             {getCheckoutMethod(edge) === method && (
               <div className="border p-2 w-2/3 flex content-center">

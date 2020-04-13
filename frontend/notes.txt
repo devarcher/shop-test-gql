@@ -4,3 +4,15 @@ needs from the back end server. The server will handle any communication to shop
 in your data base source. 
 
 
+Orders.js
+
+   * 1: Sort at database level (Their Server/Our Server)
+   * 2: Sort at server level (Our Server) (Only if a back end server exists and is used/No direct shopify query)
+   * 3: Sort at response time (Client) <- Least optimal 
+   * 4: Sort at component render time (Client) <- Most optimal of client only.hardCodedDate
+   * 
+   * Consider using context if you're using the 4th option. Sort when it's rendered, this will
+   * keep the cpu cycles free when the data fetched so not to interfer with paint cycles.
+   * * Initialize context object with null. 
+   * * Any render check if context object has data before query. Only sort if from query, and not null. 
+   * * After rendering and sorting, ensure that the context object is updated with the sorted object.
