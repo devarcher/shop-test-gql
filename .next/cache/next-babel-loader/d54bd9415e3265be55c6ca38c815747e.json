@@ -1,0 +1,36 @@
+{
+  "ast": null,
+  "code": "import React from \"react\";\nvar __jsx = React.createElement;\nimport gql from \"graphql-tag\";\nimport { useQuery } from \"react-apollo\";\nimport Orders from \"./Orders\";\nconst GET_ORDERS = gql`\n  {\n    shop {\n      id\n      name\n    }\n    orders(first: 10, query: \"fulfillment_status:unshipped\") {\n      edges {\n        node {\n          id\n          name\n          displayFulfillmentStatus\n          note\n          createdAt\n          lineItems(first: 10) {\n            edges {\n              node {\n                title\n                quantity\n              }\n            }\n          }\n          customer {\n            id\n            firstName\n            lastName\n            email\n            phone\n          }\n          customAttributes {\n            key\n            value\n          }\n        }\n      }\n    }\n  }\n`;\n\nconst GetOrders = () => {\n  // Apollo data\n  const {\n    loading,\n    error,\n    data\n  } = useQuery(GET_ORDERS, {\n    pollInterval: 30000\n  });\n  if (loading) return null;\n  if (error) return `Error! ${error}`;\n  console.log(\"Get Orders\", data);\n  return __jsx(React.Fragment, null, __jsx(\"div\", null, __jsx(\"h1\", null, \"Orders\"), __jsx(\"div\", {\n    className: \"w-full flex\"\n  }, __jsx(\"button\", {\n    className: \"btn btn-gray mr-2\",\n    onClick: () => setMethod(\"pickup\")\n  }, \"Pickups\"), __jsx(\"button\", {\n    className: \"btn btn-gray mr-2\",\n    onClick: () => setMethod(\"delivery\")\n  }, \"Deliveries\"), __jsx(\"button\", {\n    className: \"btn btn-gray\",\n    onClick: () => setMethod(\"shipping\")\n  }, \"To Ship\"))), data.orders.edges.map(edge => __jsx(Orders, {\n    key: edge.node.name,\n    data: data\n  })));\n};\n\nexport default GetOrders;",
+  "map": {
+    "version": 3,
+    "sources": [
+      "/home/kiro/Documents/Gemini/shopify-Test/shopify-test-setup/components/GetOrders.js"
+    ],
+    "names": [
+      "gql",
+      "useQuery",
+      "Orders",
+      "GET_ORDERS",
+      "GetOrders",
+      "loading",
+      "error",
+      "data",
+      "pollInterval",
+      "console",
+      "log",
+      "setMethod",
+      "orders",
+      "edges",
+      "map",
+      "edge",
+      "node",
+      "name"
+    ],
+    "mappings": ";;AAAA,OAAOA,GAAP,MAAgB,aAAhB;AACA,SAASC,QAAT,QAAyB,cAAzB;AACA,OAAOC,MAAP,MAAmB,UAAnB;AAEA,MAAMC,UAAU,GAAGH,GAAI;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;CAAvB;;AAuCA,MAAMI,SAAS,GAAG,MAAM;AACtB;AACA,QAAM;AAAEC,IAAAA,OAAF;AAAWC,IAAAA,KAAX;AAAkBC,IAAAA;AAAlB,MAA2BN,QAAQ,CAACE,UAAD,EAAa;AACpDK,IAAAA,YAAY,EAAE;AADsC,GAAb,CAAzC;AAIA,MAAIH,OAAJ,EAAa,OAAO,IAAP;AACb,MAAIC,KAAJ,EAAW,OAAQ,UAASA,KAAM,EAAvB;AAEXG,EAAAA,OAAO,CAACC,GAAR,CAAY,YAAZ,EAA0BH,IAA1B;AAEA,SACE,4BACE,mBACE,2BADF,EAEE;AAAK,IAAA,SAAS,EAAE;AAAhB,KACE;AACE,IAAA,SAAS,EAAE,mBADb;AAEE,IAAA,OAAO,EAAE,MAAMI,SAAS,CAAC,QAAD;AAF1B,eADF,EAOE;AACE,IAAA,SAAS,EAAE,mBADb;AAEE,IAAA,OAAO,EAAE,MAAMA,SAAS,CAAC,UAAD;AAF1B,kBAPF,EAaE;AACE,IAAA,SAAS,EAAE,cADb;AAEE,IAAA,OAAO,EAAE,MAAMA,SAAS,CAAC,UAAD;AAF1B,eAbF,CAFF,CADF,EAwBKJ,IAAI,CAACK,MAAL,CAAYC,KAAZ,CAAkBC,GAAlB,CAAuBC,IAAD,IACrB,MAAC,MAAD;AAAQ,IAAA,GAAG,EAAEA,IAAI,CAACC,IAAL,CAAUC,IAAvB;AAA6B,IAAA,IAAI,EAAEV;AAAnC,IADD,CAxBL,CADF;AA8BD,CAzCD;;AA2CA,eAAeH,SAAf",
+    "sourcesContent": [
+      "import gql from \"graphql-tag\";\nimport { useQuery } from \"react-apollo\";\nimport Orders from \"./Orders\";\n\nconst GET_ORDERS = gql`\n  {\n    shop {\n      id\n      name\n    }\n    orders(first: 10, query: \"fulfillment_status:unshipped\") {\n      edges {\n        node {\n          id\n          name\n          displayFulfillmentStatus\n          note\n          createdAt\n          lineItems(first: 10) {\n            edges {\n              node {\n                title\n                quantity\n              }\n            }\n          }\n          customer {\n            id\n            firstName\n            lastName\n            email\n            phone\n          }\n          customAttributes {\n            key\n            value\n          }\n        }\n      }\n    }\n  }\n`;\n\nconst GetOrders = () => {\n  // Apollo data\n  const { loading, error, data } = useQuery(GET_ORDERS, {\n    pollInterval: 30000,\n  });\n\n  if (loading) return null;\n  if (error) return `Error! ${error}`;\n\n  console.log(\"Get Orders\", data)\n\n  return (\n    <>\n      <div>\n        <h1>Orders</h1>\n        <div className={\"w-full flex\"}>\n          <button\n            className={\"btn btn-gray mr-2\"}\n            onClick={() => setMethod(\"pickup\")}\n          >\n            Pickups\n          </button>\n          <button\n            className={\"btn btn-gray mr-2\"}\n            onClick={() => setMethod(\"delivery\")}\n          >\n            Deliveries\n          </button>\n          <button\n            className={\"btn btn-gray\"}\n            onClick={() => setMethod(\"shipping\")}\n          >\n            To Ship\n          </button>\n        </div>\n      </div>\n        {data.orders.edges.map((edge) => (\n          <Orders key={edge.node.name} data={data} />\n        ))}\n    </>\n  );\n};\n\nexport default GetOrders;\n"
+    ]
+  },
+  "metadata": {},
+  "sourceType": "module"
+}

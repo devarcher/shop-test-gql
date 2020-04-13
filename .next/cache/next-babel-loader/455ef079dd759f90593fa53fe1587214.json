@@ -1,0 +1,48 @@
+{
+  "ast": null,
+  "code": "import _ from \"lodash\";\nexport var getCheckoutMethod = function getCheckoutMethod(edge) {\n  return _.chain(edge.node.customAttributes).find({\n    key: \"Checkout-Method\"\n  }).get(\"value\").value();\n};\nexport var getDeliveryDates = function getDeliveryDates(edge) {\n  return _.chain(edge.node.customAttributes).find({\n    key: \"Delivery-Date\"\n  }).get(\"value\").value();\n};\nexport var getPickupTimes = function getPickupTimes(edge) {\n  return _.chain(edge.node.customAttributes).find({\n    key: \"Pickup-Time\"\n  }).get(\"value\").value();\n};\nexport var getDeliveryTimes = function getDeliveryTimes(edge) {\n  return _.chain(edge.node.customAttributes).find({\n    key: \"Delivery-Time\"\n  }).get(\"value\").value();\n};\nexport var getOrderStatus = function getOrderStatus(edge) {\n  return _.chain(edge.node.metafields.edges).find({\n    key: \"order_status\"\n  }).get(\"value\").value();\n};\nexport var getOrderName = function getOrderName(edge) {\n  return edge.node.name;\n};\nexport var getFulFillmentStatus = function getFulFillmentStatus(edge) {\n  return edge.node.displayFulfillmentStatus;\n};\nexport var getCustomerFullName = function getCustomerFullName(edge) {\n  return \"\".concat(edge.node.customer.firstName, \" \").concat(edge.node.customer.lastName);\n};\nexport var getCustomerEmail = function getCustomerEmail(edge) {\n  return edge.node.customer.email;\n};\nexport var getCustomerNote = function getCustomerNote(edge) {\n  return edge.node.customer.note;\n};\nexport var getOrderCreationTime = function getOrderCreationTime(edge) {\n  return edge.node.createdAt;\n};",
+  "map": {
+    "version": 3,
+    "sources": [
+      "/home/kiro/Documents/Gemini/shopify-Test/shopify-test-setup/utils/getCustomAttributes.js"
+    ],
+    "names": [
+      "_",
+      "getCheckoutMethod",
+      "edge",
+      "chain",
+      "node",
+      "customAttributes",
+      "find",
+      "key",
+      "get",
+      "value",
+      "getDeliveryDates",
+      "getPickupTimes",
+      "getDeliveryTimes",
+      "getOrderStatus",
+      "metafields",
+      "edges",
+      "getOrderName",
+      "name",
+      "getFulFillmentStatus",
+      "displayFulfillmentStatus",
+      "getCustomerFullName",
+      "customer",
+      "firstName",
+      "lastName",
+      "getCustomerEmail",
+      "email",
+      "getCustomerNote",
+      "note",
+      "getOrderCreationTime",
+      "createdAt"
+    ],
+    "mappings": "AAAA,OAAOA,CAAP,MAAc,QAAd;AAEA,OAAO,IAAMC,iBAAiB,GAAG,SAApBA,iBAAoB,CAACC,IAAD,EAAU;AACzC,SAAOF,CAAC,CAACG,KAAF,CAAQD,IAAI,CAACE,IAAL,CAAUC,gBAAlB,EACJC,IADI,CACC;AAAEC,IAAAA,GAAG,EAAE;AAAP,GADD,EAEJC,GAFI,CAEA,OAFA,EAGJC,KAHI,EAAP;AAID,CALM;AAMP,OAAO,IAAMC,gBAAgB,GAAG,SAAnBA,gBAAmB,CAACR,IAAD,EAAU;AACxC,SAAOF,CAAC,CAACG,KAAF,CAAQD,IAAI,CAACE,IAAL,CAAUC,gBAAlB,EACJC,IADI,CACC;AAAEC,IAAAA,GAAG,EAAE;AAAP,GADD,EAEJC,GAFI,CAEA,OAFA,EAGJC,KAHI,EAAP;AAID,CALM;AAMP,OAAO,IAAME,cAAc,GAAG,SAAjBA,cAAiB,CAACT,IAAD,EAAU;AACtC,SAAOF,CAAC,CAACG,KAAF,CAAQD,IAAI,CAACE,IAAL,CAAUC,gBAAlB,EACJC,IADI,CACC;AAAEC,IAAAA,GAAG,EAAE;AAAP,GADD,EAEJC,GAFI,CAEA,OAFA,EAGJC,KAHI,EAAP;AAID,CALM;AAMP,OAAO,IAAMG,gBAAgB,GAAG,SAAnBA,gBAAmB,CAACV,IAAD,EAAU;AACxC,SAAOF,CAAC,CAACG,KAAF,CAAQD,IAAI,CAACE,IAAL,CAAUC,gBAAlB,EACJC,IADI,CACC;AAAEC,IAAAA,GAAG,EAAE;AAAP,GADD,EAEJC,GAFI,CAEA,OAFA,EAGJC,KAHI,EAAP;AAID,CALM;AAMP,OAAO,IAAMI,cAAc,GAAG,SAAjBA,cAAiB,CAACX,IAAD,EAAU;AACtC,SAAOF,CAAC,CAACG,KAAF,CAAQD,IAAI,CAACE,IAAL,CAAUU,UAAV,CAAqBC,KAA7B,EACJT,IADI,CACC;AAAEC,IAAAA,GAAG,EAAE;AAAP,GADD,EAEJC,GAFI,CAEA,OAFA,EAGJC,KAHI,EAAP;AAID,CALM;AAMP,OAAO,IAAMO,YAAY,GAAG,SAAfA,YAAe,CAACd,IAAD,EAAU;AACpC,SAAOA,IAAI,CAACE,IAAL,CAAUa,IAAjB;AACD,CAFM;AAGP,OAAO,IAAMC,oBAAoB,GAAG,SAAvBA,oBAAuB,CAAChB,IAAD,EAAU;AAC5C,SAAOA,IAAI,CAACE,IAAL,CAAUe,wBAAjB;AACD,CAFM;AAGP,OAAO,IAAMC,mBAAmB,GAAG,SAAtBA,mBAAsB,CAAClB,IAAD,EAAU;AAC3C,mBAAUA,IAAI,CAACE,IAAL,CAAUiB,QAAV,CAAmBC,SAA7B,cAA0CpB,IAAI,CAACE,IAAL,CAAUiB,QAAV,CAAmBE,QAA7D;AACD,CAFM;AAGP,OAAO,IAAMC,gBAAgB,GAAG,SAAnBA,gBAAmB,CAACtB,IAAD,EAAU;AACxC,SAAOA,IAAI,CAACE,IAAL,CAAUiB,QAAV,CAAmBI,KAA1B;AACD,CAFM;AAGP,OAAO,IAAMC,eAAe,GAAG,SAAlBA,eAAkB,CAACxB,IAAD,EAAU;AACvC,SAAOA,IAAI,CAACE,IAAL,CAAUiB,QAAV,CAAmBM,IAA1B;AACD,CAFM;AAGP,OAAO,IAAMC,oBAAoB,GAAG,SAAvBA,oBAAuB,CAAC1B,IAAD,EAAU;AAC5C,SAAOA,IAAI,CAACE,IAAL,CAAUyB,SAAjB;AACD,CAFM",
+    "sourcesContent": [
+      "import _ from \"lodash\";\n\nexport const getCheckoutMethod = (edge) => {\n  return _.chain(edge.node.customAttributes)\n    .find({ key: \"Checkout-Method\" })\n    .get(\"value\")\n    .value();\n};\nexport const getDeliveryDates = (edge) => {\n  return _.chain(edge.node.customAttributes)\n    .find({ key: \"Delivery-Date\" })\n    .get(\"value\")\n    .value();\n};\nexport const getPickupTimes = (edge) => {\n  return _.chain(edge.node.customAttributes)\n    .find({ key: \"Pickup-Time\" })\n    .get(\"value\")\n    .value();\n};\nexport const getDeliveryTimes = (edge) => {\n  return _.chain(edge.node.customAttributes)\n    .find({ key: \"Delivery-Time\" })\n    .get(\"value\")\n    .value();\n};\nexport const getOrderStatus = (edge) => {\n  return _.chain(edge.node.metafields.edges)\n    .find({ key: \"order_status\" })\n    .get(\"value\")\n    .value();\n};\nexport const getOrderName = (edge) => {\n  return edge.node.name;\n};\nexport const getFulFillmentStatus = (edge) => {\n  return edge.node.displayFulfillmentStatus;\n};\nexport const getCustomerFullName = (edge) => {\n  return `${edge.node.customer.firstName} ${edge.node.customer.lastName}`;\n};\nexport const getCustomerEmail = (edge) => {\n  return edge.node.customer.email;\n};\nexport const getCustomerNote = (edge) => {\n  return edge.node.customer.note;\n};\nexport const getOrderCreationTime = (edge) => {\n  return edge.node.createdAt;\n};\n"
+    ]
+  },
+  "metadata": {},
+  "sourceType": "module"
+}

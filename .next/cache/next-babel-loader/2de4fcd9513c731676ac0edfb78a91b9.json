@@ -1,0 +1,39 @@
+{
+  "ast": null,
+  "code": "var __jsx = React.createElement;\nimport React, { useState } from \"react\";\nimport { UPDATE_ORDER_STATUS, GET_ORDERS } from \"../queries/queries\";\nimport { useMutation } from \"react-apollo\";\n\nconst selectStatus = props => {\n  const {\n    id\n  } = props;\n  const {\n    0: orderStatus,\n    1: setOrderStatus\n  } = useState(\"\");\n  const [updateOrderStatus] = useMutation(UPDATE_ORDER_STATUS);\n\n  const handleUpdateStatus = e => {\n    e.preventDefault();\n    setOrderStatus(e.target.value);\n    updateOrderStatus({\n      variables: {\n        input: {\n          \"id\": id,\n          \"tags\": e.target.value\n        }\n      },\n      refetchQueries: [{\n        query: GET_ORDERS,\n        variables: {\n          tags\n        }\n      }]\n    });\n  };\n\n  return __jsx(\"div\", {\n    className: \"p-2\"\n  }, __jsx(\"label\", {\n    htmlFor: \"order-status-select\"\n  }, \"Update Status:\"), __jsx(\"select\", {\n    name: \"status\",\n    value: orderStatus,\n    onChange: e => handleUpdateStatus(e)\n  }, __jsx(\"option\", {\n    value: \"\"\n  }, \"--Status--\"), __jsx(\"option\", {\n    value: \"null\"\n  }, \"Cancelled\"), __jsx(\"option\", {\n    value: \"prep\"\n  }, \"In Prep\"), __jsx(\"option\", {\n    value: \"ready\"\n  }, \"Ready\"), __jsx(\"option\", {\n    value: \"notified\"\n  }, \"Customer Notified\"), __jsx(\"option\", {\n    value: \"complete\"\n  }, \"Order Completed\")));\n};\n\nexport default selectStatus;",
+  "map": {
+    "version": 3,
+    "sources": [
+      "/home/kiro/Documents/Gemini/shopify-Test/shopify-test-setup/components/SelectStatus.js"
+    ],
+    "names": [
+      "React",
+      "useState",
+      "UPDATE_ORDER_STATUS",
+      "GET_ORDERS",
+      "useMutation",
+      "selectStatus",
+      "props",
+      "id",
+      "orderStatus",
+      "setOrderStatus",
+      "updateOrderStatus",
+      "handleUpdateStatus",
+      "e",
+      "preventDefault",
+      "target",
+      "value",
+      "variables",
+      "input",
+      "refetchQueries",
+      "query",
+      "tags"
+    ],
+    "mappings": ";AAAA,OAAOA,KAAP,IAAgBC,QAAhB,QAAgC,OAAhC;AACA,SAASC,mBAAT,EAA8BC,UAA9B,QAAgD,oBAAhD;AACA,SAASC,WAAT,QAA4B,cAA5B;;AAEA,MAAMC,YAAY,GAAIC,KAAD,IAAW;AAC9B,QAAM;AAAEC,IAAAA;AAAF,MAASD,KAAf;AACA,QAAM;AAAA,OAACE,WAAD;AAAA,OAAcC;AAAd,MAAgCR,QAAQ,CAAC,EAAD,CAA9C;AAEA,QAAM,CAACS,iBAAD,IAAsBN,WAAW,CAACF,mBAAD,CAAvC;;AAEA,QAAMS,kBAAkB,GAAIC,CAAD,IAAO;AAChCA,IAAAA,CAAC,CAACC,cAAF;AACAJ,IAAAA,cAAc,CAACG,CAAC,CAACE,MAAF,CAASC,KAAV,CAAd;AACAL,IAAAA,iBAAiB,CAAC;AAChBM,MAAAA,SAAS,EAAE;AACTC,QAAAA,KAAK,EAAE;AACL,gBAAMV,EADD;AAEL,kBAAQK,CAAC,CAACE,MAAF,CAASC;AAFZ;AADE,OADK;AAOhBG,MAAAA,cAAc,EAAE,CAAC;AACfC,QAAAA,KAAK,EAAEhB,UADQ;AAEfa,QAAAA,SAAS,EAAE;AAAEI,UAAAA;AAAF;AAFI,OAAD;AAPA,KAAD,CAAjB;AAWD,GAdD;;AAgBA,SACE;AAAK,IAAA,SAAS,EAAE;AAAhB,KACE;AAAO,IAAA,OAAO,EAAC;AAAf,sBADF,EAGE;AACE,IAAA,IAAI,EAAC,QADP;AAEE,IAAA,KAAK,EAAEZ,WAFT;AAGE,IAAA,QAAQ,EAAGI,CAAD,IAAOD,kBAAkB,CAACC,CAAD;AAHrC,KAKE;AAAQ,IAAA,KAAK,EAAC;AAAd,kBALF,EAME;AAAQ,IAAA,KAAK,EAAC;AAAd,iBANF,EAOE;AAAQ,IAAA,KAAK,EAAC;AAAd,eAPF,EAQE;AAAQ,IAAA,KAAK,EAAC;AAAd,aARF,EASE;AAAQ,IAAA,KAAK,EAAC;AAAd,yBATF,EAUE;AAAQ,IAAA,KAAK,EAAC;AAAd,uBAVF,CAHF,CADF;AAkBD,CAxCD;;AA0CA,eAAeP,YAAf",
+    "sourcesContent": [
+      "import React, { useState } from \"react\";\nimport { UPDATE_ORDER_STATUS, GET_ORDERS } from \"../queries/queries\";\nimport { useMutation } from \"react-apollo\";\n\nconst selectStatus = (props) => {\n  const { id } = props;\n  const [orderStatus, setOrderStatus] = useState(\"\");\n\n  const [updateOrderStatus] = useMutation(UPDATE_ORDER_STATUS);\n\n  const handleUpdateStatus = (e) => {\n    e.preventDefault();\n    setOrderStatus(e.target.value);\n    updateOrderStatus({\n      variables: {\n        input: {\n          \"id\": id,\n          \"tags\": e.target.value\n        },\n      },\n      refetchQueries: [{ \n        query: GET_ORDERS, \n        variables: { tags } }]\n    });\n  };\n\n  return (\n    <div className={\"p-2\"}>\n      <label htmlFor=\"order-status-select\">Update Status:</label>\n\n      <select\n        name=\"status\"\n        value={orderStatus}\n        onChange={(e) => handleUpdateStatus(e)}\n      >\n        <option value=\"\">--Status--</option>\n        <option value=\"null\">Cancelled</option>\n        <option value=\"prep\">In Prep</option>\n        <option value=\"ready\">Ready</option>\n        <option value=\"notified\">Customer Notified</option>\n        <option value=\"complete\">Order Completed</option>\n      </select>\n    </div>\n  );\n};\n\nexport default selectStatus;\n"
+    ]
+  },
+  "metadata": {},
+  "sourceType": "module"
+}

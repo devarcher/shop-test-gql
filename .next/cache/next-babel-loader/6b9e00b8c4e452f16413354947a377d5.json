@@ -1,0 +1,43 @@
+{
+  "ast": null,
+  "code": "import React from \"react\";\nvar __jsx = React.createElement;\nimport gql from 'graphql-tag';\nimport { Query } from 'react-apollo';\nimport _ from \"lodash\";\nconst GET_ORDERS = gql`\n{\n \tshop {\n    id\n    name\n  }\n  orders(first: 10, query: \"fulfillment_status:unshipped\") {\n    edges {\n      node {\n        id\n        name\n        displayFulfillmentStatus\n        note\n        createdAt\n        customer {\n          id\n          firstName\n          lastName\n          email\n          phone\n          ordersCount\n          totalSpent\n        }\n        customAttributes {\n          key\n          value\n        }\n      }\n    }\n  }\n}\n`;\n\nconst Orders = () => {\n  return __jsx(React.Fragment, null, __jsx(\"h1\", null, \"Unfulfilled Orders\"), __jsx(Query, {\n    query: GET_ORDERS\n  }, ({\n    data,\n    loading,\n    error\n  }) => {\n    if (loading) return __jsx(\"div\", null, \"Loading\\u2026\");\n    if (error) return __jsx(\"div\", null, error.message); // console.log(data.orders.edges);\n\n    const dataArray = data.orders.edges;\n    console.log(dataArray); // const method = _.chain(dataArray.node)\n    //  .find({ key: \"Checkout-Method\" })\n    //  .get(\"value\")\n    //  .value();\n    //  console.log(method)\n    // const pickupMethod = data.orders.edges[7].customAttributes\n    // console.log(pickupMethod)\n\n    return data.orders.edges.map(edge => __jsx(\"div\", {\n      key: edge.node.name,\n      className: \"border p-2\"\n    }, __jsx(\"h2\", null, \"Order Name: \", edge.node.name), __jsx(\"h4\", null, \"Status: \", edge.node.displayFulfillmentStatus), __jsx(\"h3\", null, \"Customer Name: \", edge.node.customer.firstName, \" \", edge.node.customer.lastName), __jsx(\"h3\", null, \"Customer Email: \", edge.node.customer.email), edge.node.note && __jsx(\"h4\", null, \"Customer message: \", edge.node.note), __jsx(\"h4\", null, \"Time Created: \", edge.node.createdAt)));\n  }));\n};\n\nexport default Orders;",
+  "map": {
+    "version": 3,
+    "sources": [
+      "/home/kiro/Documents/Gemini/shopify-Test/shopify-test-setup/pages/orders.js"
+    ],
+    "names": [
+      "gql",
+      "Query",
+      "_",
+      "GET_ORDERS",
+      "Orders",
+      "data",
+      "loading",
+      "error",
+      "message",
+      "dataArray",
+      "orders",
+      "edges",
+      "console",
+      "log",
+      "map",
+      "edge",
+      "node",
+      "name",
+      "displayFulfillmentStatus",
+      "customer",
+      "firstName",
+      "lastName",
+      "email",
+      "note",
+      "createdAt"
+    ],
+    "mappings": ";;AAAA,OAAOA,GAAP,MAAgB,aAAhB;AACA,SAASC,KAAT,QAAsB,cAAtB;AACA,OAAOC,CAAP,MAAc,QAAd;AAEA,MAAMC,UAAU,GAAGH,GAAI;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;CAAvB;;AAiCA,MAAMI,MAAM,GAAG,MAAM;AACnB,SACE,4BACA,uCADA,EAEA,MAAC,KAAD;AAAO,IAAA,KAAK,EAAED;AAAd,KACG,CAAC;AAAEE,IAAAA,IAAF;AAAQC,IAAAA,OAAR;AAAiBC,IAAAA;AAAjB,GAAD,KAA8B;AAC3B,QAAID,OAAJ,EAAa,OAAO,mCAAP;AACb,QAAIC,KAAJ,EAAW,OAAO,mBAAMA,KAAK,CAACC,OAAZ,CAAP,CAFgB,CAG3B;;AAEA,UAAMC,SAAS,GAAGJ,IAAI,CAACK,MAAL,CAAYC,KAA9B;AACAC,IAAAA,OAAO,CAACC,GAAR,CAAYJ,SAAZ,EAN2B,CAS3B;AACA;AACA;AACA;AAEA;AAGA;AAEA;;AAEA,WAAOJ,IAAI,CAACK,MAAL,CAAYC,KAAZ,CAAkBG,GAAlB,CAAuBC,IAAD,IAC7B;AAAK,MAAA,GAAG,EAAEA,IAAI,CAACC,IAAL,CAAUC,IAApB;AAA0B,MAAA,SAAS,EAAC;AAApC,OACE,kCAAiBF,IAAI,CAACC,IAAL,CAAUC,IAA3B,CADF,EAEE,8BAAaF,IAAI,CAACC,IAAL,CAAUE,wBAAvB,CAFF,EAGE,qCAAoBH,IAAI,CAACC,IAAL,CAAUG,QAAV,CAAmBC,SAAvC,OAAmDL,IAAI,CAACC,IAAL,CAAUG,QAAV,CAAmBE,QAAtE,CAHF,EAIE,sCAAqBN,IAAI,CAACC,IAAL,CAAUG,QAAV,CAAmBG,KAAxC,CAJF,EAKGP,IAAI,CAACC,IAAL,CAAUO,IAAV,IAAkB,wCAAuBR,IAAI,CAACC,IAAL,CAAUO,IAAjC,CALrB,EAME,oCAAmBR,IAAI,CAACC,IAAL,CAAUQ,SAA7B,CANF,CADO,CAAP;AAWH,GAjCH,CAFA,CADF;AAwCD,CAzCD;;AA2CA,eAAepB,MAAf",
+    "sourcesContent": [
+      "import gql from 'graphql-tag';\nimport { Query } from 'react-apollo';\nimport _ from \"lodash\"\n\nconst GET_ORDERS = gql`\n{\n \tshop {\n    id\n    name\n  }\n  orders(first: 10, query: \"fulfillment_status:unshipped\") {\n    edges {\n      node {\n        id\n        name\n        displayFulfillmentStatus\n        note\n        createdAt\n        customer {\n          id\n          firstName\n          lastName\n          email\n          phone\n          ordersCount\n          totalSpent\n        }\n        customAttributes {\n          key\n          value\n        }\n      }\n    }\n  }\n}\n`;\n\nconst Orders = () => {\n  return (\n    <>\n    <h1>Unfulfilled Orders</h1>\n    <Query query={GET_ORDERS}>\n      {({ data, loading, error }) => {\n          if (loading) return <div>Loading…</div>;\n          if (error) return <div>{error.message}</div>;\n          // console.log(data.orders.edges);\n\n          const dataArray = data.orders.edges\n          console.log(dataArray)\n          \n\n          // const method = _.chain(dataArray.node)\n          //  .find({ key: \"Checkout-Method\" })\n          //  .get(\"value\")\n          //  .value();\n\n          //  console.log(method)\n\n          \n          // const pickupMethod = data.orders.edges[7].customAttributes\n\n          // console.log(pickupMethod)\n\n          return data.orders.edges.map((edge) => (\n          <div key={edge.node.name} className=\"border p-2\">\n            <h2>Order Name: {edge.node.name}</h2>\n            <h4>Status: {edge.node.displayFulfillmentStatus}</h4>\n            <h3>Customer Name: {edge.node.customer.firstName} {edge.node.customer.lastName}</h3>\n            <h3>Customer Email: {edge.node.customer.email}</h3>\n            {edge.node.note && <h4>Customer message: {edge.node.note}</h4>}\n            <h4>Time Created: {edge.node.createdAt}</h4>\n          </div>\n          ))\n\n      }}\n    </Query>\n    </>\n  )\n}\n\nexport default Orders"
+    ]
+  },
+  "metadata": {},
+  "sourceType": "module"
+}

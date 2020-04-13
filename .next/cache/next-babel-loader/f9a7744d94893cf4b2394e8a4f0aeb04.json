@@ -1,0 +1,28 @@
+{
+  "ast": null,
+  "code": "import React from \"react\";\nvar __jsx = React.createElement;\nimport Orders from \"./Orders\";\nimport { useQuery } from \"react-apollo\";\nimport { GET_ORDERS } from \"../queries/queries\";\n\nvar GetOrders = function GetOrders() {\n  // Apollo data\n  var _useQuery = useQuery(GET_ORDERS, {\n    pollInterval: 500\n  }),\n      loading = _useQuery.loading,\n      error = _useQuery.error,\n      data = _useQuery.data;\n\n  if (loading) return null;\n  if (error) return \"Error! \".concat(error);\n  console.log(\"Get Orders\", data);\n  return __jsx(React.Fragment, null, __jsx(Orders, {\n    data: data\n  }));\n};\n\nexport default GetOrders;",
+  "map": {
+    "version": 3,
+    "sources": [
+      "/home/kiro/Documents/Gemini/shopify-Test/shopify-test-setup/components/GetOrders.js"
+    ],
+    "names": [
+      "Orders",
+      "useQuery",
+      "GET_ORDERS",
+      "GetOrders",
+      "pollInterval",
+      "loading",
+      "error",
+      "data",
+      "console",
+      "log"
+    ],
+    "mappings": ";;AAAA,OAAOA,MAAP,MAAmB,UAAnB;AACA,SAASC,QAAT,QAAyB,cAAzB;AACA,SAASC,UAAT,QAA2B,oBAA3B;;AAEA,IAAMC,SAAS,GAAG,SAAZA,SAAY,GAAM;AACtB;AADsB,kBAEWF,QAAQ,CAACC,UAAD,EAAa;AACpDE,IAAAA,YAAY,EAAE;AADsC,GAAb,CAFnB;AAAA,MAEdC,OAFc,aAEdA,OAFc;AAAA,MAELC,KAFK,aAELA,KAFK;AAAA,MAEEC,IAFF,aAEEA,IAFF;;AAMtB,MAAIF,OAAJ,EAAa,OAAO,IAAP;AACb,MAAIC,KAAJ,EAAW,wBAAiBA,KAAjB;AAEXE,EAAAA,OAAO,CAACC,GAAR,CAAY,YAAZ,EAA0BF,IAA1B;AAEA,SACE,4BACE,MAAC,MAAD;AAAQ,IAAA,IAAI,EAAEA;AAAd,IADF,CADF;AAKD,CAhBD;;AAkBA,eAAeJ,SAAf",
+    "sourcesContent": [
+      "import Orders from \"./Orders\";\nimport { useQuery } from \"react-apollo\";\nimport { GET_ORDERS } from \"../queries/queries\";\n\nconst GetOrders = () => {\n  // Apollo data\n  const { loading, error, data } = useQuery(GET_ORDERS, {\n    pollInterval: 500,\n  });\n\n  if (loading) return null;\n  if (error) return `Error! ${error}`;\n\n  console.log(\"Get Orders\", data);\n\n  return (\n    <>\n      <Orders data={data} />\n    </>\n  );\n};\n\nexport default GetOrders;\n"
+    ]
+  },
+  "metadata": {},
+  "sourceType": "module"
+}

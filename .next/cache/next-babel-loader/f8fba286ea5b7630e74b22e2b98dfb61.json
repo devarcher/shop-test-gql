@@ -1,0 +1,42 @@
+{
+  "ast": null,
+  "code": "import _slicedToArray from \"@babel/runtime/helpers/esm/slicedToArray\";\nvar __jsx = React.createElement;\nimport React, { useState } from \"react\";\nimport { ADD_ORDER_TAGS, GET_ORDERS } from \"../queries/queries\";\nimport { useMutation } from \"react-apollo\";\n\nvar selectStatus = function selectStatus(props) {\n  var id = props.id;\n\n  var _useState = useState(\"\"),\n      orderStatus = _useState[0],\n      setOrderStatus = _useState[1];\n\n  var _useMutation = useMutation(ADD_ORDER_TAGS),\n      _useMutation2 = _slicedToArray(_useMutation, 2),\n      addOrderTags = _useMutation2[0],\n      _useMutation2$ = _useMutation2[1],\n      mutationLoading = _useMutation2$.loading,\n      mutationError = _useMutation2$.error;\n\n  var handleUpdateStatus = function handleUpdateStatus(e) {\n    e.preventDefault();\n    setOrderStatus(e.target.value);\n    addOrderTags({\n      variables: {\n        \"id\": id,\n        \"tags\": e.target.value\n      },\n      refetchQueries: [{\n        query: GET_ORDERS,\n        variables: {\n          tags: \"tags\"\n        }\n      }]\n    });\n  };\n\n  return __jsx(\"div\", {\n    className: \"p-2\"\n  }, __jsx(\"label\", {\n    htmlFor: \"order-status-select\"\n  }, \"Update Status:\"), __jsx(\"select\", {\n    name: \"status\",\n    value: orderStatus,\n    onChange: function onChange(e) {\n      return handleUpdateStatus(e);\n    }\n  }, __jsx(\"option\", {\n    value: \"\"\n  }, \"--Status--\"), __jsx(\"option\", {\n    value: \"null\"\n  }, \"Cancelled\"), __jsx(\"option\", {\n    value: \"prep\"\n  }, \"In Prep\"), __jsx(\"option\", {\n    value: \"ready\"\n  }, \"Ready\"), __jsx(\"option\", {\n    value: \"notified\"\n  }, \"Customer Notified\"), __jsx(\"option\", {\n    value: \"complete\"\n  }, \"Order Completed\")), mutationLoading && __jsx(\"p\", null, \"Loading...\"), mutationError && __jsx(\"p\", null, \"Error :( Please try again\"));\n};\n\nexport default selectStatus;",
+  "map": {
+    "version": 3,
+    "sources": [
+      "/home/kiro/Documents/Gemini/shopify-Test/shopify-test-setup/components/SelectStatus.js"
+    ],
+    "names": [
+      "React",
+      "useState",
+      "ADD_ORDER_TAGS",
+      "GET_ORDERS",
+      "useMutation",
+      "selectStatus",
+      "props",
+      "id",
+      "orderStatus",
+      "setOrderStatus",
+      "addOrderTags",
+      "mutationLoading",
+      "loading",
+      "mutationError",
+      "error",
+      "handleUpdateStatus",
+      "e",
+      "preventDefault",
+      "target",
+      "value",
+      "variables",
+      "refetchQueries",
+      "query",
+      "tags"
+    ],
+    "mappings": ";;AAAA,OAAOA,KAAP,IAAgBC,QAAhB,QAAgC,OAAhC;AACA,SAASC,cAAT,EAAyBC,UAAzB,QAA2C,oBAA3C;AACA,SAASC,WAAT,QAA4B,cAA5B;;AAEA,IAAMC,YAAY,GAAG,SAAfA,YAAe,CAACC,KAAD,EAAW;AAAA,MACtBC,EADsB,GACfD,KADe,CACtBC,EADsB;;AAAA,kBAEQN,QAAQ,CAAC,EAAD,CAFhB;AAAA,MAEvBO,WAFuB;AAAA,MAEVC,cAFU;;AAAA,qBAI8CL,WAAW,CAACF,cAAD,CAJzD;AAAA;AAAA,MAIvBQ,YAJuB;AAAA;AAAA,MAIEC,eAJF,kBAIPC,OAJO;AAAA,MAI0BC,aAJ1B,kBAImBC,KAJnB;;AAM9B,MAAMC,kBAAkB,GAAG,SAArBA,kBAAqB,CAACC,CAAD,EAAO;AAChCA,IAAAA,CAAC,CAACC,cAAF;AACAR,IAAAA,cAAc,CAACO,CAAC,CAACE,MAAF,CAASC,KAAV,CAAd;AACAT,IAAAA,YAAY,CAAC;AACXU,MAAAA,SAAS,EAAE;AACP,cAAMb,EADC;AAEP,gBAAQS,CAAC,CAACE,MAAF,CAASC;AAFV,OADA;AAKXE,MAAAA,cAAc,EAAE,CAAC;AACfC,QAAAA,KAAK,EAAEnB,UADQ;AAEfiB,QAAAA,SAAS,EAAE;AAAEG,UAAAA,IAAI,EAAE;AAAR;AAFI,OAAD;AALL,KAAD,CAAZ;AASD,GAZD;;AAcA,SACE;AAAK,IAAA,SAAS,EAAE;AAAhB,KACE;AAAO,IAAA,OAAO,EAAC;AAAf,sBADF,EAGE;AACE,IAAA,IAAI,EAAC,QADP;AAEE,IAAA,KAAK,EAAEf,WAFT;AAGE,IAAA,QAAQ,EAAE,kBAACQ,CAAD;AAAA,aAAOD,kBAAkB,CAACC,CAAD,CAAzB;AAAA;AAHZ,KAKE;AAAQ,IAAA,KAAK,EAAC;AAAd,kBALF,EAME;AAAQ,IAAA,KAAK,EAAC;AAAd,iBANF,EAOE;AAAQ,IAAA,KAAK,EAAC;AAAd,eAPF,EAQE;AAAQ,IAAA,KAAK,EAAC;AAAd,aARF,EASE;AAAQ,IAAA,KAAK,EAAC;AAAd,yBATF,EAUE;AAAQ,IAAA,KAAK,EAAC;AAAd,uBAVF,CAHF,EAeGL,eAAe,IAAI,8BAftB,EAgBGE,aAAa,IAAI,6CAhBpB,CADF;AAoBD,CAxCD;;AA0CA,eAAeR,YAAf",
+    "sourcesContent": [
+      "import React, { useState } from \"react\";\nimport { ADD_ORDER_TAGS, GET_ORDERS } from \"../queries/queries\";\nimport { useMutation } from \"react-apollo\";\n\nconst selectStatus = (props) => {\n  const { id } = props;\n  const [orderStatus, setOrderStatus] = useState(\"\");\n\n  const [addOrderTags, { loading: mutationLoading, error: mutationError}, ] = useMutation(ADD_ORDER_TAGS);\n\n  const handleUpdateStatus = (e) => {\n    e.preventDefault();\n    setOrderStatus(e.target.value);\n    addOrderTags({\n      variables: {\n          \"id\": id,\n          \"tags\": e.target.value\n      },\n      refetchQueries: [{ \n        query: GET_ORDERS, \n        variables: { tags: \"tags\" } }]\n    });\n  };\n\n  return (\n    <div className={\"p-2\"}>\n      <label htmlFor=\"order-status-select\">Update Status:</label>\n\n      <select\n        name=\"status\"\n        value={orderStatus}\n        onChange={(e) => handleUpdateStatus(e)}\n      >\n        <option value=\"\">--Status--</option>\n        <option value=\"null\">Cancelled</option>\n        <option value=\"prep\">In Prep</option>\n        <option value=\"ready\">Ready</option>\n        <option value=\"notified\">Customer Notified</option>\n        <option value=\"complete\">Order Completed</option>\n      </select>\n      {mutationLoading && <p>Loading...</p>}\n      {mutationError && <p>Error :( Please try again</p>}\n    </div>\n  );\n};\n\nexport default selectStatus;\n"
+    ]
+  },
+  "metadata": {},
+  "sourceType": "module"
+}

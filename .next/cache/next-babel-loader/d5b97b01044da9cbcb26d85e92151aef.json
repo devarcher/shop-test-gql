@@ -1,0 +1,45 @@
+{
+  "ast": null,
+  "code": "import React from \"react\";\nvar __jsx = React.createElement;\nimport Orders from \"./Orders\";\nimport { useQuery, useMutation } from \"react-apollo\";\nimport { GET_ORDERS, REMOVE_ORDER_TAGS } from \"../queries/queries\";\nimport { getCheckoutMethod } from \"../utils/getCustomAttributes\";\n\nconst GetOrders = () => {\n  // Apollo data\n  const {\n    data\n  } = useQuery(GET_ORDERS, {\n    pollInterval: 5000\n  });\n  const [removeOrderTags] = useMutation(REMOVE_ORDER_TAGS);\n  console.log(\"Get Orders\", data);\n\n  if (data && data !== undefined) {\n    data.orders.edges.map(edge => {\n      const tagsPickupMethod = edge.node.tags.find(method => method === \"Pickup Order\");\n      const tagsDeliveryMethod = edge.node.tags.find(method => method === \"Local Delivery Order\");\n      console.log(\"TagsPickupMethod\", tagsPickupMethod);\n      console.log(\"TagsDeliveryMethod\", tagsDeliveryMethod);\n\n      if (getCheckoutMethod(edge) === \"delivery\" && tagsPickupMethod !== undefined) {\n        removeOrderTags({\n          variables: {\n            \"id\": edge.node.id,\n            \"tags\": \"Pickup Order\"\n          },\n          refetchQueries: [{\n            query: GET_ORDERS,\n            variables: {\n              tags: \"tags\"\n            }\n          }]\n        });\n      }\n\n      if (getCheckoutMethod(edge) === \"pickup\" && tagsDeliveryMethod !== undefined) {\n        removeOrderTags({\n          variables: {\n            \"id\": edge.node.id,\n            \"tags\": \"Local Delivery Order\"\n          },\n          refetchQueries: [{\n            query: GET_ORDERS,\n            variables: {\n              tags: \"tags\"\n            }\n          }]\n        });\n      }\n    });\n  }\n\n  return __jsx(React.Fragment, null, __jsx(Orders, {\n    data: data\n  }));\n};\n\nexport default GetOrders;",
+  "map": {
+    "version": 3,
+    "sources": [
+      "/home/kiro/Documents/Gemini/shopify-Test/shopify-test-setup/components/GetOrders.js"
+    ],
+    "names": [
+      "Orders",
+      "useQuery",
+      "useMutation",
+      "GET_ORDERS",
+      "REMOVE_ORDER_TAGS",
+      "getCheckoutMethod",
+      "GetOrders",
+      "data",
+      "pollInterval",
+      "removeOrderTags",
+      "console",
+      "log",
+      "undefined",
+      "orders",
+      "edges",
+      "map",
+      "edge",
+      "tagsPickupMethod",
+      "node",
+      "tags",
+      "find",
+      "method",
+      "tagsDeliveryMethod",
+      "variables",
+      "id",
+      "refetchQueries",
+      "query"
+    ],
+    "mappings": ";;AAAA,OAAOA,MAAP,MAAmB,UAAnB;AACA,SAASC,QAAT,EAAmBC,WAAnB,QAAsC,cAAtC;AACA,SAASC,UAAT,EAAqBC,iBAArB,QAA8C,oBAA9C;AACA,SAASC,iBAAT,QAAkC,8BAAlC;;AAEA,MAAMC,SAAS,GAAG,MAAM;AACtB;AACA,QAAM;AAAEC,IAAAA;AAAF,MAAWN,QAAQ,CAACE,UAAD,EAAa;AACpCK,IAAAA,YAAY,EAAE;AADsB,GAAb,CAAzB;AAIE,QAAM,CAACC,eAAD,IAAoBP,WAAW,CAACE,iBAAD,CAArC;AAEFM,EAAAA,OAAO,CAACC,GAAR,CAAY,YAAZ,EAA0BJ,IAA1B;;AAEA,MAAGA,IAAI,IAAIA,IAAI,KAAKK,SAApB,EAA+B;AAC7BL,IAAAA,IAAI,CAACM,MAAL,CAAYC,KAAZ,CAAkBC,GAAlB,CAAuBC,IAAD,IAAU;AAC9B,YAAMC,gBAAgB,GAAGD,IAAI,CAACE,IAAL,CAAUC,IAAV,CAAeC,IAAf,CAAoBC,MAAM,IAAIA,MAAM,KAAK,cAAzC,CAAzB;AACA,YAAMC,kBAAkB,GAAGN,IAAI,CAACE,IAAL,CAAUC,IAAV,CAAeC,IAAf,CAAoBC,MAAM,IAAIA,MAAM,KAAK,sBAAzC,CAA3B;AACAX,MAAAA,OAAO,CAACC,GAAR,CAAY,kBAAZ,EAAgCM,gBAAhC;AACAP,MAAAA,OAAO,CAACC,GAAR,CAAY,oBAAZ,EAAkCW,kBAAlC;;AAEA,UAAGjB,iBAAiB,CAACW,IAAD,CAAjB,KAA4B,UAA5B,IAA0CC,gBAAgB,KAAKL,SAAlE,EAA6E;AAC3EH,QAAAA,eAAe,CAAC;AACdc,UAAAA,SAAS,EAAE;AACT,kBAAMP,IAAI,CAACE,IAAL,CAAUM,EADP;AAET,oBAAQ;AAFC,WADG;AAKdC,UAAAA,cAAc,EAAE,CAAC;AACfC,YAAAA,KAAK,EAAEvB,UADQ;AAEfoB,YAAAA,SAAS,EAAE;AAAEJ,cAAAA,IAAI,EAAE;AAAR;AAFI,WAAD;AALF,SAAD,CAAf;AAUD;;AAED,UAAGd,iBAAiB,CAACW,IAAD,CAAjB,KAA4B,QAA5B,IAAwCM,kBAAkB,KAAKV,SAAlE,EAA6E;AAC3EH,QAAAA,eAAe,CAAC;AACdc,UAAAA,SAAS,EAAE;AACT,kBAAMP,IAAI,CAACE,IAAL,CAAUM,EADP;AAET,oBAAQ;AAFC,WADG;AAKdC,UAAAA,cAAc,EAAE,CAAC;AACfC,YAAAA,KAAK,EAAEvB,UADQ;AAEfoB,YAAAA,SAAS,EAAE;AAAEJ,cAAAA,IAAI,EAAE;AAAR;AAFI,WAAD;AALF,SAAD,CAAf;AAUD;AAEF,KAhCD;AAiCD;;AAGD,SACE,4BACE,MAAC,MAAD;AAAQ,IAAA,IAAI,EAAEZ;AAAd,IADF,CADF;AAKD,CApDD;;AAsDA,eAAeD,SAAf",
+    "sourcesContent": [
+      "import Orders from \"./Orders\";\nimport { useQuery, useMutation } from \"react-apollo\";\nimport { GET_ORDERS, REMOVE_ORDER_TAGS } from \"../queries/queries\";\nimport { getCheckoutMethod } from \"../utils/getCustomAttributes\";\n\nconst GetOrders = () => {\n  // Apollo data\n  const { data } = useQuery(GET_ORDERS, {\n    pollInterval: 5000,\n  });\n\n    const [removeOrderTags] = useMutation(REMOVE_ORDER_TAGS);\n\n  console.log(\"Get Orders\", data);\n\n  if(data && data !== undefined) {\n    data.orders.edges.map((edge) => {\n      const tagsPickupMethod = edge.node.tags.find(method => method === \"Pickup Order\")\n      const tagsDeliveryMethod = edge.node.tags.find(method => method === \"Local Delivery Order\")\n      console.log(\"TagsPickupMethod\", tagsPickupMethod)\n      console.log(\"TagsDeliveryMethod\", tagsDeliveryMethod)\n\n      if(getCheckoutMethod(edge) === \"delivery\" && tagsPickupMethod !== undefined) {\n        removeOrderTags({\n          variables: {\n            \"id\": edge.node.id,\n            \"tags\": \"Pickup Order\"\n          },\n          refetchQueries: [{\n            query: GET_ORDERS,\n            variables: { tags: \"tags\" }\n          }]\n        })\n      }\n      \n      if(getCheckoutMethod(edge) === \"pickup\" && tagsDeliveryMethod !== undefined) {\n        removeOrderTags({\n          variables: {\n            \"id\": edge.node.id,\n            \"tags\": \"Local Delivery Order\"\n          },\n          refetchQueries: [{\n            query: GET_ORDERS,\n            variables: { tags: \"tags\" }\n          }]\n        })\n      }\n    \n    })\n  }\n\n\n  return (\n    <>\n      <Orders data={data} />\n    </>\n  );\n};\n\nexport default GetOrders;\n"
+    ]
+  },
+  "metadata": {},
+  "sourceType": "module"
+}

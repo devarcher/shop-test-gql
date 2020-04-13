@@ -1,0 +1,45 @@
+{
+  "ast": null,
+  "code": "import _slicedToArray from \"@babel/runtime/helpers/esm/slicedToArray\";\nimport React from \"react\";\nvar __jsx = React.createElement;\nimport Orders from \"./Orders\";\nimport { useQuery, useMutation } from \"react-apollo\";\nimport { GET_ORDERS, REMOVE_ORDER_TAGS } from \"../queries/queries\";\nimport { getCheckoutMethod } from \"../utils/getCustomAttributes\";\n\nvar GetOrders = function GetOrders() {\n  // Apollo data\n  var _useQuery = useQuery(GET_ORDERS, {\n    pollInterval: 5000\n  }),\n      data = _useQuery.data;\n\n  var _useMutation = useMutation(REMOVE_ORDER_TAGS),\n      _useMutation2 = _slicedToArray(_useMutation, 1),\n      removeOrderTags = _useMutation2[0];\n\n  console.log(\"Get Orders\", data);\n\n  if (data && data !== undefined) {\n    data.orders.edges.map(function (edge) {\n      var tagsPickupMethod = edge.node.tags.find(function (method) {\n        return method === \"Pickup Order\";\n      });\n      var tagsDeliveryMethod = edge.node.tags.find(function (method) {\n        return method === \"Local Delivery Order\";\n      });\n      console.log(\"TagsPickupMethod\", tagsPickupMethod);\n      console.log(\"TagsDeliveryMethod\", tagsDeliveryMethod);\n\n      if (getCheckoutMethod(edge) === \"delivery\" && tagsPickupMethod !== undefined) {\n        removeOrderTags({\n          variables: {\n            \"id\": edge.node.id,\n            \"tags\": \"Pickup Order\"\n          },\n          refetchQueries: [{\n            query: GET_ORDERS,\n            variables: {\n              tags: \"tags\"\n            }\n          }]\n        });\n      }\n\n      if (getCheckoutMethod(edge) === \"pickup\" && tagsDeliveryMethod !== undefined) {\n        removeOrderTags({\n          variables: {\n            \"id\": edge.node.id,\n            \"tags\": \"Local Delivery Order\"\n          },\n          refetchQueries: [{\n            query: GET_ORDERS,\n            variables: {\n              tags: \"tags\"\n            }\n          }]\n        });\n      }\n    });\n  }\n\n  return __jsx(React.Fragment, null, __jsx(Orders, {\n    data: data\n  }));\n};\n\nexport default GetOrders;",
+  "map": {
+    "version": 3,
+    "sources": [
+      "/home/kiro/Documents/Gemini/shopify-Test/shopify-test-setup/components/GetOrders.js"
+    ],
+    "names": [
+      "Orders",
+      "useQuery",
+      "useMutation",
+      "GET_ORDERS",
+      "REMOVE_ORDER_TAGS",
+      "getCheckoutMethod",
+      "GetOrders",
+      "pollInterval",
+      "data",
+      "removeOrderTags",
+      "console",
+      "log",
+      "undefined",
+      "orders",
+      "edges",
+      "map",
+      "edge",
+      "tagsPickupMethod",
+      "node",
+      "tags",
+      "find",
+      "method",
+      "tagsDeliveryMethod",
+      "variables",
+      "id",
+      "refetchQueries",
+      "query"
+    ],
+    "mappings": ";;;AAAA,OAAOA,MAAP,MAAmB,UAAnB;AACA,SAASC,QAAT,EAAmBC,WAAnB,QAAsC,cAAtC;AACA,SAASC,UAAT,EAAqBC,iBAArB,QAA8C,oBAA9C;AACA,SAASC,iBAAT,QAAkC,8BAAlC;;AAEA,IAAMC,SAAS,GAAG,SAAZA,SAAY,GAAM;AACtB;AADsB,kBAELL,QAAQ,CAACE,UAAD,EAAa;AACpCI,IAAAA,YAAY,EAAE;AADsB,GAAb,CAFH;AAAA,MAEdC,IAFc,aAEdA,IAFc;;AAAA,qBAMMN,WAAW,CAACE,iBAAD,CANjB;AAAA;AAAA,MAMbK,eANa;;AAQtBC,EAAAA,OAAO,CAACC,GAAR,CAAY,YAAZ,EAA0BH,IAA1B;;AAEA,MAAGA,IAAI,IAAIA,IAAI,KAAKI,SAApB,EAA+B;AAC7BJ,IAAAA,IAAI,CAACK,MAAL,CAAYC,KAAZ,CAAkBC,GAAlB,CAAsB,UAACC,IAAD,EAAU;AAC9B,UAAMC,gBAAgB,GAAGD,IAAI,CAACE,IAAL,CAAUC,IAAV,CAAeC,IAAf,CAAoB,UAAAC,MAAM;AAAA,eAAIA,MAAM,KAAK,cAAf;AAAA,OAA1B,CAAzB;AACA,UAAMC,kBAAkB,GAAGN,IAAI,CAACE,IAAL,CAAUC,IAAV,CAAeC,IAAf,CAAoB,UAAAC,MAAM;AAAA,eAAIA,MAAM,KAAK,sBAAf;AAAA,OAA1B,CAA3B;AACAX,MAAAA,OAAO,CAACC,GAAR,CAAY,kBAAZ,EAAgCM,gBAAhC;AACAP,MAAAA,OAAO,CAACC,GAAR,CAAY,oBAAZ,EAAkCW,kBAAlC;;AAEA,UAAGjB,iBAAiB,CAACW,IAAD,CAAjB,KAA4B,UAA5B,IAA0CC,gBAAgB,KAAKL,SAAlE,EAA6E;AAC3EH,QAAAA,eAAe,CAAC;AACdc,UAAAA,SAAS,EAAE;AACT,kBAAMP,IAAI,CAACE,IAAL,CAAUM,EADP;AAET,oBAAQ;AAFC,WADG;AAKdC,UAAAA,cAAc,EAAE,CAAC;AACfC,YAAAA,KAAK,EAAEvB,UADQ;AAEfoB,YAAAA,SAAS,EAAE;AAAEJ,cAAAA,IAAI,EAAE;AAAR;AAFI,WAAD;AALF,SAAD,CAAf;AAUD;;AAED,UAAGd,iBAAiB,CAACW,IAAD,CAAjB,KAA4B,QAA5B,IAAwCM,kBAAkB,KAAKV,SAAlE,EAA6E;AAC3EH,QAAAA,eAAe,CAAC;AACdc,UAAAA,SAAS,EAAE;AACT,kBAAMP,IAAI,CAACE,IAAL,CAAUM,EADP;AAET,oBAAQ;AAFC,WADG;AAKdC,UAAAA,cAAc,EAAE,CAAC;AACfC,YAAAA,KAAK,EAAEvB,UADQ;AAEfoB,YAAAA,SAAS,EAAE;AAAEJ,cAAAA,IAAI,EAAE;AAAR;AAFI,WAAD;AALF,SAAD,CAAf;AAUD;AAEF,KAhCD;AAiCD;;AAGD,SACE,4BACE,MAAC,MAAD;AAAQ,IAAA,IAAI,EAAEX;AAAd,IADF,CADF;AAKD,CApDD;;AAsDA,eAAeF,SAAf",
+    "sourcesContent": [
+      "import Orders from \"./Orders\";\nimport { useQuery, useMutation } from \"react-apollo\";\nimport { GET_ORDERS, REMOVE_ORDER_TAGS } from \"../queries/queries\";\nimport { getCheckoutMethod } from \"../utils/getCustomAttributes\";\n\nconst GetOrders = () => {\n  // Apollo data\n  const { data } = useQuery(GET_ORDERS, {\n    pollInterval: 5000,\n  });\n\n    const [removeOrderTags] = useMutation(REMOVE_ORDER_TAGS);\n\n  console.log(\"Get Orders\", data);\n\n  if(data && data !== undefined) {\n    data.orders.edges.map((edge) => {\n      const tagsPickupMethod = edge.node.tags.find(method => method === \"Pickup Order\")\n      const tagsDeliveryMethod = edge.node.tags.find(method => method === \"Local Delivery Order\")\n      console.log(\"TagsPickupMethod\", tagsPickupMethod)\n      console.log(\"TagsDeliveryMethod\", tagsDeliveryMethod)\n\n      if(getCheckoutMethod(edge) === \"delivery\" && tagsPickupMethod !== undefined) {\n        removeOrderTags({\n          variables: {\n            \"id\": edge.node.id,\n            \"tags\": \"Pickup Order\"\n          },\n          refetchQueries: [{\n            query: GET_ORDERS,\n            variables: { tags: \"tags\" }\n          }]\n        })\n      }\n      \n      if(getCheckoutMethod(edge) === \"pickup\" && tagsDeliveryMethod !== undefined) {\n        removeOrderTags({\n          variables: {\n            \"id\": edge.node.id,\n            \"tags\": \"Local Delivery Order\"\n          },\n          refetchQueries: [{\n            query: GET_ORDERS,\n            variables: { tags: \"tags\" }\n          }]\n        })\n      }\n    \n    })\n  }\n\n\n  return (\n    <>\n      <Orders data={data} />\n    </>\n  );\n};\n\nexport default GetOrders;\n"
+    ]
+  },
+  "metadata": {},
+  "sourceType": "module"
+}

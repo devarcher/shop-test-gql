@@ -1,0 +1,58 @@
+{
+  "ast": null,
+  "code": "import _taggedTemplateLiteral from \"@babel/runtime/helpers/esm/taggedTemplateLiteral\";\nimport React from \"react\";\nvar __jsx = React.createElement;\n\nfunction _templateObject() {\n  var data = _taggedTemplateLiteral([\"\\n{\\n \\tshop {\\n    id\\n    name\\n  }\\n  orders(first: 10, query: \\\"fulfillment_status:unshipped\\\") {\\n    edges {\\n      node {\\n        id\\n        name\\n        displayFulfillmentStatus\\n        note\\n        createdAt\\n        lineItems(first: 10) {\\n          edges {\\n            node {\\n              title\\n              quantity\\n            }\\n          }\\n        }\\n        customer {\\n          id\\n          firstName\\n          lastName\\n          email\\n          phone\\n        }\\n        customAttributes {\\n          key\\n          value\\n        }\\n      }\\n    }\\n  }\\n}\\n\"]);\n\n  _templateObject = function _templateObject() {\n    return data;\n  };\n\n  return data;\n}\n\nimport react, { useState } from \"react\";\nimport gql from 'graphql-tag';\nimport { Query } from 'react-apollo';\nimport _ from \"lodash\"; // Order Query options\n// Filter orders by their fulfillment status.\n// (default: any)\n// shipped: Show orders that have been shipped. Returns orders with fulfillment_status of fulfilled.\n// partial: Show partially shipped orders.\n// unshipped: Show orders that have not yet been shipped. Returns orders with fulfillment_status of null.\n// any: Show orders of any fulfillment status.\n// unfulfilled: Returns orders with fulfillment_status of null or partial.\n// Make shipped and unshipped\n// Open vs Closed Tickets\n\nvar GET_ORDERS = gql(_templateObject());\n\nvar getCheckoutMethod = function getCheckoutMethod(edge) {\n  return _.chain(edge.node.customAttributes).find({\n    key: \"Checkout-Method\"\n  }).get(\"value\").value();\n};\n\nvar getOrderName = function getOrderName(edge) {\n  return edge.node.name;\n};\n\nvar getFulFillmentStatus = function getFulFillmentStatus(edge) {\n  return edge.node.displayFulfillmentStatus;\n};\n\nvar getCustomerFullName = function getCustomerFullName(edge) {\n  return \"\".concat(edge.node.customer.firstName, \" \").concat(edge.node.customer.lastName);\n};\n\nvar getCustomerEmail = function getCustomerEmail(edge) {\n  return edge.node.customer.email;\n};\n\nvar getCustomerNote = function getCustomerNote(edge) {\n  return edge.node.customer.note;\n};\n\nvar getOrderCreationTime = function getOrderCreationTime(edge) {\n  return edge.node.createdAt;\n};\n\nvar Orders = function Orders() {\n  var _useState = useState(''),\n      method = _useState[0],\n      setMethod = _useState[1];\n\n  return __jsx(React.Fragment, null, __jsx(\"div\", null, __jsx(\"h1\", null, \"Orders\"), __jsx(\"div\", null, __jsx(\"button\", {\n    className: \"bg-transparent font-semibold hover:text-white py-2 px-4 border border-black-500 rounded\",\n    onClick: function onClick() {\n      return setMethod(\"pickup\");\n    }\n  }, \"Pickups\"), __jsx(\"button\", {\n    className: \"bg-transparent font-semibold hover:text-white py-2 px-4 border border-black-500 rounded\",\n    onClick: function onClick() {\n      return setMethod(\"delivery\");\n    }\n  }, \"Deliveries\"), __jsx(\"button\", {\n    className: \"bg-transparent font-semibold hover:text-white py-2 px-4 border border-black-500 rounded\",\n    onClick: function onClick() {\n      return setMethod(\"shipping\");\n    }\n  }, \"To Ship\"))), __jsx(Query, {\n    query: GET_ORDERS\n  }, function (_ref) {\n    var data = _ref.data,\n        loading = _ref.loading,\n        error = _ref.error;\n    if (loading) return __jsx(\"div\", null, \"Loading\\u2026\");\n    if (error) return __jsx(\"div\", null, error.message);\n    var dataArray = data.orders.edges;\n    return dataArray.map(function (edge) {\n      return getCheckoutMethod(edge) === method && __jsx(React.Fragment, null, __jsx(\"div\", {\n        key: edge.node.name,\n        className: \"border p-2\"\n      }, __jsx(\"h2\", null, \"Order Name: \", getOrderName(edge)), __jsx(\"h4\", null, \"Status: \", getFulFillmentStatus(edge)), __jsx(\"h2\", null, \"Method: \", getCheckoutMethod(edge)), __jsx(\"h3\", null, \"Customer Name: \", getCustomerFullName(edge)), __jsx(\"h3\", null, \"Customer Email: \", getCustomerEmail(edge)), edge.node.note && __jsx(\"h4\", null, \"Customer Note: \", getCustomerNote(edge)), __jsx(\"h4\", null, \"Time Created: \", getOrderCreationTime(edge))));\n    });\n  }));\n};\n\nexport default Orders;",
+  "map": {
+    "version": 3,
+    "sources": [
+      "/home/kiro/Documents/Gemini/shopify-Test/shopify-test-setup/pages/orders.js"
+    ],
+    "names": [
+      "react",
+      "useState",
+      "gql",
+      "Query",
+      "_",
+      "GET_ORDERS",
+      "getCheckoutMethod",
+      "edge",
+      "chain",
+      "node",
+      "customAttributes",
+      "find",
+      "key",
+      "get",
+      "value",
+      "getOrderName",
+      "name",
+      "getFulFillmentStatus",
+      "displayFulfillmentStatus",
+      "getCustomerFullName",
+      "customer",
+      "firstName",
+      "lastName",
+      "getCustomerEmail",
+      "email",
+      "getCustomerNote",
+      "note",
+      "getOrderCreationTime",
+      "createdAt",
+      "Orders",
+      "method",
+      "setMethod",
+      "data",
+      "loading",
+      "error",
+      "message",
+      "dataArray",
+      "orders",
+      "edges",
+      "map"
+    ],
+    "mappings": "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",
+    "sourcesContent": [
+      "import react, {useState} from \"react\";\nimport gql from 'graphql-tag';\nimport { Query } from 'react-apollo';\nimport _ from \"lodash\"\n\n// Order Query options\n// Filter orders by their fulfillment status.\n\n// (default: any)\n// shipped: Show orders that have been shipped. Returns orders with fulfillment_status of fulfilled.\n// partial: Show partially shipped orders.\n// unshipped: Show orders that have not yet been shipped. Returns orders with fulfillment_status of null.\n// any: Show orders of any fulfillment status.\n// unfulfilled: Returns orders with fulfillment_status of null or partial.\n\n// Make shipped and unshipped\n// Open vs Closed Tickets\n\nconst GET_ORDERS = gql`\n{\n \tshop {\n    id\n    name\n  }\n  orders(first: 10, query: \"fulfillment_status:unshipped\") {\n    edges {\n      node {\n        id\n        name\n        displayFulfillmentStatus\n        note\n        createdAt\n        lineItems(first: 10) {\n          edges {\n            node {\n              title\n              quantity\n            }\n          }\n        }\n        customer {\n          id\n          firstName\n          lastName\n          email\n          phone\n        }\n        customAttributes {\n          key\n          value\n        }\n      }\n    }\n  }\n}\n`;\n\n  const getCheckoutMethod = (edge) => {\n    return _.chain(edge.node.customAttributes)\n    .find({ key: \"Checkout-Method\" })\n    .get(\"value\")\n    .value();\n  } \n  const getOrderName = (edge) => {\n    return edge.node.name\n  }\n    const getFulFillmentStatus = (edge) => {\n    return edge.node.displayFulfillmentStatus\n  }\n  const getCustomerFullName = (edge) => {\n    return `${edge.node.customer.firstName} ${edge.node.customer.lastName}`\n  }\n  const getCustomerEmail = (edge) => {\n    return edge.node.customer.email\n  }\n  const getCustomerNote = (edge) => {\n    return edge.node.customer.note\n  }\n  const getOrderCreationTime = (edge) => {\n    return edge.node.createdAt\n  }\n  \nconst Orders = () => {\n\n  const [method, setMethod] = useState('')\n\n  return (\n    <>\n    <div>\n    <h1>Orders</h1>\n    <div>\n      <button className={\"bg-transparent font-semibold hover:text-white py-2 px-4 border border-black-500 rounded\"} onClick={() => setMethod(\"pickup\")}>Pickups</button>\n      <button className={\"bg-transparent font-semibold hover:text-white py-2 px-4 border border-black-500 rounded\"} onClick={() => setMethod(\"delivery\")}>Deliveries</button>\n      <button className={\"bg-transparent font-semibold hover:text-white py-2 px-4 border border-black-500 rounded\"} onClick={() => setMethod(\"shipping\")}>To Ship</button>\n    </div>\n    </div>\n    <Query query={GET_ORDERS}>\n      {({ data, loading, error }) => {\n        if (loading) return <div>Loading…</div>;\n        if (error) return <div>{error.message}</div>;\n\n        const dataArray = data.orders.edges\n\n        return dataArray.map((edge) => (\n          getCheckoutMethod(edge) === method &&\n          <>\n          <div key={edge.node.name} className=\"border p-2\">\n            <h2>Order Name: {getOrderName(edge)}</h2>\n            <h4>Status: {getFulFillmentStatus(edge)}</h4>\n            <h2>Method: {getCheckoutMethod(edge)}</h2>\n            <h3>Customer Name: {getCustomerFullName(edge)}</h3>\n            <h3>Customer Email: {getCustomerEmail(edge)}</h3>\n            {edge.node.note && <h4>Customer Note: {getCustomerNote(edge)}</h4>}\n            <h4>Time Created: {getOrderCreationTime(edge)}</h4>\n          </div>\n          </>\n        )) \n      }}\n    </Query>\n    </>\n  )\n}\n\nexport default Orders"
+    ]
+  },
+  "metadata": {},
+  "sourceType": "module"
+}

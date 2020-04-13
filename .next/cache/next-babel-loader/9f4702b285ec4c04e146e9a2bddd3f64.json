@@ -1,0 +1,53 @@
+{
+  "ast": null,
+  "code": "import React from \"react\";\nvar __jsx = React.createElement;\nimport gql from \"graphql-tag\";\nimport { useQuery } from \"react-apollo\";\nimport { getCheckoutMethod, getDeliveryDates, getDeliveryTimes, getPickupTimes, getOrderName, getFulFillmentStatus, getCustomerFullName, getCustomerEmail, getCustomerNote, getOrderCreationTime } from \"../utils/getCustomAttributes\";\nimport Orders from \"./Orders\";\nconst GET_ORDERS = gql`\n  {\n    shop {\n      id\n      name\n    }\n    orders(first: 10, query: \"fulfillment_status:unshipped\") {\n      edges {\n        node {\n          id\n          name\n          displayFulfillmentStatus\n          note\n          createdAt\n          lineItems(first: 10) {\n            edges {\n              node {\n                title\n                quantity\n              }\n            }\n          }\n          customer {\n            id\n            firstName\n            lastName\n            email\n            phone\n          }\n          customAttributes {\n            key\n            value\n          }\n        }\n      }\n    }\n  }\n`;\n\nconst GetOrders = () => {\n  // Apollo data\n  const {\n    loading,\n    error,\n    data\n  } = useQuery(GET_ORDERS, {\n    pollInterval: 30000\n  });\n  if (loading) return null;\n  if (error) return `Error! ${error}`;\n  const [method, setMethod] = useState(\"\");\n  const [orderStatus, setOrderStatus] = useState(\"\");\n  console.log(\"Get Orders\", data);\n  return __jsx(React.Fragment, null, __jsx(\"div\", null, __jsx(\"h1\", null, \"Orders\"), __jsx(\"div\", {\n    className: \"w-full flex\"\n  }, __jsx(\"button\", {\n    className: \"btn btn-gray mr-2\",\n    onClick: () => setMethod(\"pickup\")\n  }, \"Pickups\"), __jsx(\"button\", {\n    className: \"btn btn-gray mr-2\",\n    onClick: () => setMethod(\"delivery\")\n  }, \"Deliveries\"), __jsx(\"button\", {\n    className: \"btn btn-gray\",\n    onClick: () => setMethod(\"shipping\")\n  }, \"To Ship\"))), data.orders.edges.map(edge => __jsx(\"div\", {\n    key: edge.node.name,\n    data: data\n  }, getCheckoutMethod(edge) === method && __jsx(\"div\", {\n    className: \"border p-2 w-1/3 flex content-center\"\n  }, __jsx(\"div\", {\n    className: \"flex w-2/3 p-2 flex-col\"\n  }, __jsx(\"h2\", null, \"Order Name: \", getOrderName(edge)), __jsx(\"h4\", null, \"Status: \", getFulFillmentStatus(edge)), __jsx(\"h2\", null, \"Method: \", getCheckoutMethod(edge)), __jsx(\"h3\", null, \"Customer Name: \", getCustomerFullName(edge)), __jsx(\"h3\", null, \"Customer Email: \", getCustomerEmail(edge)), edge.node.note && __jsx(\"h4\", null, \"Customer Note: \", getCustomerNote(edge)), __jsx(\"h4\", null, \"Due Date: \", getDeliveryDates(edge)), __jsx(\"h4\", null, \"Due Time: \", getDeliveryTimes(edge))), __jsx(\"div\", null, __jsx(\"label\", {\n    for: \"order-status-select\"\n  }, \"Update Status:\"), __jsx(\"select\", {\n    name: \"status\",\n    value: orderStatus,\n    onChange: e => handleStatus(e)\n  }, __jsx(\"option\", {\n    value: \"\"\n  }, \"--Status--\"), __jsx(\"option\", {\n    value: \"null\"\n  }, \"Cancelled\"), __jsx(\"option\", {\n    value: \"prep\"\n  }, \"In Prep\"), __jsx(\"option\", {\n    value: \"ready\"\n  }, \"Ready\"), __jsx(\"option\", {\n    value: \"notified\"\n  }, \"Customer Notified\")))))));\n};\n\nexport default GetOrders;",
+  "map": {
+    "version": 3,
+    "sources": [
+      "/home/kiro/Documents/Gemini/shopify-Test/shopify-test-setup/components/GetOrders.js"
+    ],
+    "names": [
+      "gql",
+      "useQuery",
+      "getCheckoutMethod",
+      "getDeliveryDates",
+      "getDeliveryTimes",
+      "getPickupTimes",
+      "getOrderName",
+      "getFulFillmentStatus",
+      "getCustomerFullName",
+      "getCustomerEmail",
+      "getCustomerNote",
+      "getOrderCreationTime",
+      "Orders",
+      "GET_ORDERS",
+      "GetOrders",
+      "loading",
+      "error",
+      "data",
+      "pollInterval",
+      "method",
+      "setMethod",
+      "useState",
+      "orderStatus",
+      "setOrderStatus",
+      "console",
+      "log",
+      "orders",
+      "edges",
+      "map",
+      "edge",
+      "node",
+      "name",
+      "note",
+      "e",
+      "handleStatus"
+    ],
+    "mappings": "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",
+    "sourcesContent": [
+      "import gql from \"graphql-tag\";\nimport { useQuery } from \"react-apollo\";\nimport {\n  getCheckoutMethod,\n  getDeliveryDates,\n  getDeliveryTimes,\n  getPickupTimes,\n  getOrderName,\n  getFulFillmentStatus,\n  getCustomerFullName,\n  getCustomerEmail,\n  getCustomerNote,\n  getOrderCreationTime,\n} from \"../utils/getCustomAttributes\";\nimport Orders from \"./Orders\";\n\nconst GET_ORDERS = gql`\n  {\n    shop {\n      id\n      name\n    }\n    orders(first: 10, query: \"fulfillment_status:unshipped\") {\n      edges {\n        node {\n          id\n          name\n          displayFulfillmentStatus\n          note\n          createdAt\n          lineItems(first: 10) {\n            edges {\n              node {\n                title\n                quantity\n              }\n            }\n          }\n          customer {\n            id\n            firstName\n            lastName\n            email\n            phone\n          }\n          customAttributes {\n            key\n            value\n          }\n        }\n      }\n    }\n  }\n`;\n\nconst GetOrders = () => {\n  // Apollo data\n  const { loading, error, data } = useQuery(GET_ORDERS, {\n    pollInterval: 30000,\n  });\n\n  if (loading) return null;\n  if (error) return `Error! ${error}`;\n\n  const [method, setMethod] = useState(\"\");\n  const [orderStatus, setOrderStatus] = useState(\"\");\n\n  console.log(\"Get Orders\", data)\n\n  return (\n    <>\n      <div>\n        <h1>Orders</h1>\n        <div className={\"w-full flex\"}>\n          <button\n            className={\"btn btn-gray mr-2\"}\n            onClick={() => setMethod(\"pickup\")}\n          >\n            Pickups\n          </button>\n          <button\n            className={\"btn btn-gray mr-2\"}\n            onClick={() => setMethod(\"delivery\")}\n          >\n            Deliveries\n          </button>\n          <button\n            className={\"btn btn-gray\"}\n            onClick={() => setMethod(\"shipping\")}\n          >\n            To Ship\n          </button>\n        </div>\n      </div>\n        {data.orders.edges.map((edge) => (\n          <div key={edge.node.name} data={data}>\n            {getCheckoutMethod(edge) === method && (\n          <div\n          className=\"border p-2 w-1/3 flex content-center\"\n          >\n          <div className=\"flex w-2/3 p-2 flex-col\">\n            <h2>Order Name: {getOrderName(edge)}</h2>\n            <h4>Status: {getFulFillmentStatus(edge)}</h4>\n            <h2>Method: {getCheckoutMethod(edge)}</h2>\n            <h3>Customer Name: {getCustomerFullName(edge)}</h3>\n            <h3>Customer Email: {getCustomerEmail(edge)}</h3>\n            {edge.node.note && <h4>Customer Note: {getCustomerNote(edge)}</h4>}\n            <h4>Due Date: {getDeliveryDates(edge)}</h4>\n            <h4>Due Time: {getDeliveryTimes(edge)}</h4>\n          </div>\n          <div>\n            <label for=\"order-status-select\">Update Status:</label>\n\n            <select\n              name=\"status\"\n              value={orderStatus}\n              onChange={(e) => handleStatus(e)}\n            >\n              <option value=\"\">--Status--</option>\n              <option value=\"null\">Cancelled</option>\n              <option value=\"prep\">In Prep</option>\n              <option value=\"ready\">Ready</option>\n              <option value=\"notified\">Customer Notified</option>\n            </select>\n          </div>\n        </div>\n      )}\n\n\n\n          </div>\n        ))}\n    </>\n  );\n};\n\nexport default GetOrders;\n"
+    ]
+  },
+  "metadata": {},
+  "sourceType": "module"
+}

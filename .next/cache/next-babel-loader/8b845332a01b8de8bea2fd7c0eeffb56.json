@@ -1,0 +1,50 @@
+{
+  "ast": null,
+  "code": "import _taggedTemplateLiteral from \"@babel/runtime/helpers/esm/taggedTemplateLiteral\";\nimport React from \"react\";\nvar __jsx = React.createElement;\n\nfunction _templateObject() {\n  var data = _taggedTemplateLiteral([\"\\n{\\n \\tshop {\\n    id\\n    name\\n  }\\n  orders(first: 20, query: \\\"fulfillment_status:unshipped\\\") {\\n    edges {\\n      node {\\n        id\\n        name\\n        displayFulfillmentStatus\\n        note\\n        createdAt\\n        lineItems\\n        customer {\\n          id\\n          firstName\\n          lastName\\n          email\\n          phone\\n        }\\n        customAttributes {\\n          key\\n          value\\n        }\\n      }\\n    }\\n  }\\n}\\n\"]);\n\n  _templateObject = function _templateObject() {\n    return data;\n  };\n\n  return data;\n}\n\nimport gql from 'graphql-tag';\nimport { Query } from 'react-apollo';\nimport _ from \"lodash\"; // Order Query options\n// Filter orders by their fulfillment status.\n// (default: any)\n// shipped: Show orders that have been shipped. Returns orders with fulfillment_status of fulfilled.\n// partial: Show partially shipped orders.\n// unshipped: Show orders that have not yet been shipped. Returns orders with fulfillment_status of null.\n// any: Show orders of any fulfillment status.\n// unfulfilled: Returns orders with fulfillment_status of null or partial.\n// Make shipped and unshipped\n// Open vs Closed Tickets\n\nvar GET_ORDERS = gql(_templateObject());\n\nvar getCheckoutMethod = function getCheckoutMethod(edge) {\n  return _.chain(edge.node.customAttributes).find({\n    key: \"Checkout-Method\"\n  }).get(\"value\").value();\n};\n\nvar Orders = function Orders() {\n  return __jsx(React.Fragment, null, __jsx(\"h1\", null, \"Unfulfilled Orders\"), __jsx(Query, {\n    query: GET_ORDERS\n  }, function (_ref) {\n    var data = _ref.data,\n        loading = _ref.loading,\n        error = _ref.error;\n    if (loading) return __jsx(\"div\", null, \"Loading\\u2026\");\n    if (error) return __jsx(\"div\", null, error.message); // console.log(data.orders.edges);\n\n    var dataArray = data.orders.edges;\n    console.log(dataArray);\n    return data.orders.edges.map(function (edge) {\n      return __jsx(\"div\", {\n        key: edge.node.name,\n        className: \"border p-2\"\n      }, __jsx(\"h2\", null, \"Method: \", getCheckoutMethod(edge)), __jsx(\"h2\", null, \"Order Name: \", edge.node.name), __jsx(\"h4\", null, \"Status: \", edge.node.displayFulfillmentStatus), __jsx(\"h3\", null, \"Customer Name: \", edge.node.customer.firstName, \" \", edge.node.customer.lastName), __jsx(\"h3\", null, \"Customer Email: \", edge.node.customer.email), edge.node.note && __jsx(\"h4\", null, \"Customer message: \", edge.node.note), __jsx(\"h4\", null, \"Time Created: \", edge.node.createdAt));\n    });\n  }));\n};\n\nexport default Orders;",
+  "map": {
+    "version": 3,
+    "sources": [
+      "/home/kiro/Documents/Gemini/shopify-Test/shopify-test-setup/pages/orders.js"
+    ],
+    "names": [
+      "gql",
+      "Query",
+      "_",
+      "GET_ORDERS",
+      "getCheckoutMethod",
+      "edge",
+      "chain",
+      "node",
+      "customAttributes",
+      "find",
+      "key",
+      "get",
+      "value",
+      "Orders",
+      "data",
+      "loading",
+      "error",
+      "message",
+      "dataArray",
+      "orders",
+      "edges",
+      "console",
+      "log",
+      "map",
+      "name",
+      "displayFulfillmentStatus",
+      "customer",
+      "firstName",
+      "lastName",
+      "email",
+      "note",
+      "createdAt"
+    ],
+    "mappings": ";;;;;;;;;;;;;;AAAA,OAAOA,GAAP,MAAgB,aAAhB;AACA,SAASC,KAAT,QAAsB,cAAtB;AACA,OAAOC,CAAP,MAAc,QAAd,C,CAEA;AACA;AAEA;AACA;AACA;AACA;AACA;AACA;AAEA;AACA;;AAEA,IAAMC,UAAU,GAAGH,GAAH,mBAAhB;;AAgCE,IAAMI,iBAAiB,GAAG,SAApBA,iBAAoB,CAACC,IAAD,EAAU;AAClC,SAAOH,CAAC,CAACI,KAAF,CAAQD,IAAI,CAACE,IAAL,CAAUC,gBAAlB,EACNC,IADM,CACD;AAAEC,IAAAA,GAAG,EAAE;AAAP,GADC,EAENC,GAFM,CAEF,OAFE,EAGNC,KAHM,EAAP;AAID,CALD;;AAOF,IAAMC,MAAM,GAAG,SAATA,MAAS,GAAM;AAInB,SACE,4BACA,uCADA,EAEA,MAAC,KAAD;AAAO,IAAA,KAAK,EAAEV;AAAd,KACG,gBAA8B;AAAA,QAA3BW,IAA2B,QAA3BA,IAA2B;AAAA,QAArBC,OAAqB,QAArBA,OAAqB;AAAA,QAAZC,KAAY,QAAZA,KAAY;AAC3B,QAAID,OAAJ,EAAa,OAAO,mCAAP;AACb,QAAIC,KAAJ,EAAW,OAAO,mBAAMA,KAAK,CAACC,OAAZ,CAAP,CAFgB,CAG3B;;AAEA,QAAMC,SAAS,GAAGJ,IAAI,CAACK,MAAL,CAAYC,KAA9B;AACAC,IAAAA,OAAO,CAACC,GAAR,CAAYJ,SAAZ;AAGA,WAAOJ,IAAI,CAACK,MAAL,CAAYC,KAAZ,CAAkBG,GAAlB,CAAsB,UAAClB,IAAD;AAAA,aAE7B;AAAK,QAAA,GAAG,EAAEA,IAAI,CAACE,IAAL,CAAUiB,IAApB;AAA0B,QAAA,SAAS,EAAC;AAApC,SACE,8BAAapB,iBAAiB,CAACC,IAAD,CAA9B,CADF,EAEE,kCAAiBA,IAAI,CAACE,IAAL,CAAUiB,IAA3B,CAFF,EAGE,8BAAanB,IAAI,CAACE,IAAL,CAAUkB,wBAAvB,CAHF,EAIE,qCAAoBpB,IAAI,CAACE,IAAL,CAAUmB,QAAV,CAAmBC,SAAvC,OAAmDtB,IAAI,CAACE,IAAL,CAAUmB,QAAV,CAAmBE,QAAtE,CAJF,EAKE,sCAAqBvB,IAAI,CAACE,IAAL,CAAUmB,QAAV,CAAmBG,KAAxC,CALF,EAMGxB,IAAI,CAACE,IAAL,CAAUuB,IAAV,IAAkB,wCAAuBzB,IAAI,CAACE,IAAL,CAAUuB,IAAjC,CANrB,EAOE,oCAAmBzB,IAAI,CAACE,IAAL,CAAUwB,SAA7B,CAPF,CAF6B;AAAA,KAAtB,CAAP;AAcH,GAxBH,CAFA,CADF;AA+BD,CAnCD;;AAqCA,eAAelB,MAAf",
+    "sourcesContent": [
+      "import gql from 'graphql-tag';\nimport { Query } from 'react-apollo';\nimport _ from \"lodash\"\n\n// Order Query options\n// Filter orders by their fulfillment status.\n\n// (default: any)\n// shipped: Show orders that have been shipped. Returns orders with fulfillment_status of fulfilled.\n// partial: Show partially shipped orders.\n// unshipped: Show orders that have not yet been shipped. Returns orders with fulfillment_status of null.\n// any: Show orders of any fulfillment status.\n// unfulfilled: Returns orders with fulfillment_status of null or partial.\n\n// Make shipped and unshipped\n// Open vs Closed Tickets\n\nconst GET_ORDERS = gql`\n{\n \tshop {\n    id\n    name\n  }\n  orders(first: 20, query: \"fulfillment_status:unshipped\") {\n    edges {\n      node {\n        id\n        name\n        displayFulfillmentStatus\n        note\n        createdAt\n        lineItems\n        customer {\n          id\n          firstName\n          lastName\n          email\n          phone\n        }\n        customAttributes {\n          key\n          value\n        }\n      }\n    }\n  }\n}\n`;\n\n  const getCheckoutMethod = (edge) => {\n    return _.chain(edge.node.customAttributes)\n    .find({ key: \"Checkout-Method\" })\n    .get(\"value\")\n    .value();\n  } \n\nconst Orders = () => {\n\n\n\n  return (\n    <>\n    <h1>Unfulfilled Orders</h1>\n    <Query query={GET_ORDERS}>\n      {({ data, loading, error }) => {\n          if (loading) return <div>Loading…</div>;\n          if (error) return <div>{error.message}</div>;\n          // console.log(data.orders.edges);\n\n          const dataArray = data.orders.edges\n          console.log(dataArray)\n\n\n          return data.orders.edges.map((edge) => (\n\n          <div key={edge.node.name} className=\"border p-2\">\n            <h2>Method: {getCheckoutMethod(edge)}</h2>\n            <h2>Order Name: {edge.node.name}</h2>\n            <h4>Status: {edge.node.displayFulfillmentStatus}</h4>\n            <h3>Customer Name: {edge.node.customer.firstName} {edge.node.customer.lastName}</h3>\n            <h3>Customer Email: {edge.node.customer.email}</h3>\n            {edge.node.note && <h4>Customer message: {edge.node.note}</h4>}\n            <h4>Time Created: {edge.node.createdAt}</h4>\n\n          </div>\n          ))\n\n      }}\n    </Query>\n    </>\n  )\n}\n\nexport default Orders"
+    ]
+  },
+  "metadata": {},
+  "sourceType": "module"
+}

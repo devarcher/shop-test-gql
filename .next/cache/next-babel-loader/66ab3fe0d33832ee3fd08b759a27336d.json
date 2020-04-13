@@ -1,0 +1,48 @@
+{
+  "ast": null,
+  "code": "import React from \"react\";\nvar __jsx = React.createElement;\nimport react, { useState, useEffect } from \"react\";\nimport gql from \"graphql-tag\";\nimport { useQuery, Query } from \"react-apollo\";\nimport _ from \"lodash\";\nimport getCustomAttributes from '../utils/getCustomAttributes';\nconst GET_ORDERS = gql`\n  {\n    shop {\n      id\n      name\n    }\n    orders(first: 10, query: \"fulfillment_status:unshipped\") {\n      edges {\n        node {\n          id\n          name\n          displayFulfillmentStatus\n          note\n          createdAt\n          lineItems(first: 10) {\n            edges {\n              node {\n                title\n                quantity\n              }\n            }\n          }\n          customer {\n            id\n            firstName\n            lastName\n            email\n            phone\n          }\n          customAttributes {\n            key\n            value\n          }\n        }\n      }\n    }\n  }\n`;\n\nconst Orders = () => {\n  // Apollo data\n  const {\n    data\n  } = useQuery(GET_ORDERS); // Local State\n\n  const {\n    0: orderedData,\n    1: setOrderedData\n  } = useState([]);\n  const {\n    0: method,\n    1: setMethod\n  } = useState(\"\"); // const addDateTime = (data) => {\n  //   const dateTimeArray = [];\n  //   qlData.map(edge => {\n  //     const deliveryDate = getDeliveryDates(edge);\n  //     const deliveryTime = getDeliveryTimes(edge);\n  //     if(deliveryTime !== undefined) {\n  //       const processTimesArray = deliveryTime.split(' ');\n  //       const deliveryWindowParse = processTimesArray.slice(0, 2)\n  //       const deliveryDueTime = deliveryWindowParse.join(' ')\n  //       dateTimeArray.push(new Date(`${deliveryDate} ${deliveryDueTime}`).toISOString())\n  //     }\n  //     // console.log(dateTimeArray)\n  //     setDataArray(...dataArray, [dataArray, qlData.concat(dateTimeArray)])\n  //   })\n  // }\n  // console.log(\"DataArray\", dataArray)\n\n  return __jsx(React.Fragment, null, __jsx(\"div\", null, __jsx(\"h1\", null, \"Orders\"), __jsx(\"div\", {\n    className: \"w-full flex\"\n  }, __jsx(\"button\", {\n    className: \"btn btn-gray mr-2\",\n    onClick: () => setMethod(\"pickup\")\n  }, \"Pickups\"), __jsx(\"button\", {\n    className: \"btn btn-gray mr-2\",\n    onClick: () => setMethod(\"delivery\")\n  }, \"Deliveries\"), __jsx(\"button\", {\n    className: \"btn btn-gray\",\n    onClick: () => setMethod(\"shipping\")\n  }, \"To Ship\"))), data !== undefined && data.orders.edges.map(edge => // Show only the data associated with the Checkout Method\n  getCheckoutMethod(edge) === method && __jsx(\"div\", {\n    key: edge.node.name,\n    className: \"border p-2\"\n  }, __jsx(\"h2\", null, \"Order Name: \", getCustomAttributes.getOrderName(edge)), __jsx(\"h4\", null, \"Status: \", getCustomAttributes.getFulFillmentStatus(edge)), __jsx(\"h2\", null, \"Method: \", getCustomAttributes.getCheckoutMethod(edge)), __jsx(\"h3\", null, \"Customer Name: \", getCustomAttributes.getCustomerFullName(edge)), __jsx(\"h3\", null, \"Customer Email: \", getCustomAttributes.getCustomerEmail(edge)), edge.node.note && __jsx(\"h4\", null, \"Customer Note: \", getCustomAttributes.getCustomerNote(edge)), __jsx(\"h4\", null, \"Time Created: \", getCustomAttributes.getOrderCreationTime(edge)))));\n};\n\nexport default Orders;",
+  "map": {
+    "version": 3,
+    "sources": [
+      "/home/kiro/Documents/Gemini/shopify-Test/shopify-test-setup/pages/orders.js"
+    ],
+    "names": [
+      "react",
+      "useState",
+      "useEffect",
+      "gql",
+      "useQuery",
+      "Query",
+      "_",
+      "getCustomAttributes",
+      "GET_ORDERS",
+      "Orders",
+      "data",
+      "orderedData",
+      "setOrderedData",
+      "method",
+      "setMethod",
+      "undefined",
+      "orders",
+      "edges",
+      "map",
+      "edge",
+      "getCheckoutMethod",
+      "node",
+      "name",
+      "getOrderName",
+      "getFulFillmentStatus",
+      "getCustomerFullName",
+      "getCustomerEmail",
+      "note",
+      "getCustomerNote",
+      "getOrderCreationTime"
+    ],
+    "mappings": ";;AAAA,OAAOA,KAAP,IAAgBC,QAAhB,EAA0BC,SAA1B,QAA2C,OAA3C;AACA,OAAOC,GAAP,MAAgB,aAAhB;AACA,SAASC,QAAT,EAAmBC,KAAnB,QAAgC,cAAhC;AACA,OAAOC,CAAP,MAAc,QAAd;AACA,OAAOC,mBAAP,MAAgC,8BAAhC;AAEA,MAAMC,UAAU,GAAGL,GAAI;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;CAAvB;;AAuCA,MAAMM,MAAM,GAAG,MAAM;AACnB;AACA,QAAM;AAAEC,IAAAA;AAAF,MAAWN,QAAQ,CAACI,UAAD,CAAzB,CAFmB,CAInB;;AACA,QAAM;AAAA,OAACG,WAAD;AAAA,OAAcC;AAAd,MAAgCX,QAAQ,CAAC,EAAD,CAA9C;AACA,QAAM;AAAA,OAACY,MAAD;AAAA,OAASC;AAAT,MAAsBb,QAAQ,CAAC,EAAD,CAApC,CANmB,CAQnB;AACA;AAEA;AACA;AACA;AAEA;AACA;AACA;AACA;AAEA;AACA;AACA;AACA;AACA;AACA;AAEA;;AAEA,SACE,4BACE,mBACE,2BADF,EAEE;AAAK,IAAA,SAAS,EAAE;AAAhB,KACE;AACE,IAAA,SAAS,EAAE,mBADb;AAEE,IAAA,OAAO,EAAE,MAAMa,SAAS,CAAC,QAAD;AAF1B,eADF,EAOE;AACE,IAAA,SAAS,EAAE,mBADb;AAEE,IAAA,OAAO,EAAE,MAAMA,SAAS,CAAC,UAAD;AAF1B,kBAPF,EAaE;AACE,IAAA,SAAS,EAAE,cADb;AAEE,IAAA,OAAO,EAAE,MAAMA,SAAS,CAAC,UAAD;AAF1B,eAbF,CAFF,CADF,EAwBKJ,IAAI,KAAKK,SAAT,IAAsBL,IAAI,CAACM,MAAL,CAAYC,KAAZ,CAAkBC,GAAlB,CACpBC,IAAD,IACE;AACAC,EAAAA,iBAAiB,CAACD,IAAD,CAAjB,KAA4BN,MAA5B,IACE;AAAK,IAAA,GAAG,EAAEM,IAAI,CAACE,IAAL,CAAUC,IAApB;AAA0B,IAAA,SAAS,EAAC;AAApC,KACE,kCAAiBf,mBAAmB,CAACgB,YAApB,CAAiCJ,IAAjC,CAAjB,CADF,EAEE,8BAAaZ,mBAAmB,CAACiB,oBAApB,CAAyCL,IAAzC,CAAb,CAFF,EAGE,8BAAaZ,mBAAmB,CAACa,iBAApB,CAAsCD,IAAtC,CAAb,CAHF,EAIE,qCAAoBZ,mBAAmB,CAACkB,mBAApB,CAAwCN,IAAxC,CAApB,CAJF,EAKE,sCAAqBZ,mBAAmB,CAACmB,gBAApB,CAAqCP,IAArC,CAArB,CALF,EAMGA,IAAI,CAACE,IAAL,CAAUM,IAAV,IACC,qCAAoBpB,mBAAmB,CAACqB,eAApB,CAAoCT,IAApC,CAApB,CAPJ,EASE,oCAAmBZ,mBAAmB,CAACsB,oBAApB,CAAyCV,IAAzC,CAAnB,CATF,CAJiB,CAxB3B,CADF;AA4CD,CAzED;;AA2EA,eAAeV,MAAf",
+    "sourcesContent": [
+      "import react, { useState, useEffect } from \"react\";\nimport gql from \"graphql-tag\";\nimport { useQuery, Query } from \"react-apollo\";\nimport _ from \"lodash\";\nimport getCustomAttributes from '../utils/getCustomAttributes';\n\nconst GET_ORDERS = gql`\n  {\n    shop {\n      id\n      name\n    }\n    orders(first: 10, query: \"fulfillment_status:unshipped\") {\n      edges {\n        node {\n          id\n          name\n          displayFulfillmentStatus\n          note\n          createdAt\n          lineItems(first: 10) {\n            edges {\n              node {\n                title\n                quantity\n              }\n            }\n          }\n          customer {\n            id\n            firstName\n            lastName\n            email\n            phone\n          }\n          customAttributes {\n            key\n            value\n          }\n        }\n      }\n    }\n  }\n`;\n\nconst Orders = () => {\n  // Apollo data\n  const { data } = useQuery(GET_ORDERS)\n\n  // Local State\n  const [orderedData, setOrderedData] = useState([]);\n  const [method, setMethod] = useState(\"\");\n\n  // const addDateTime = (data) => {\n  //   const dateTimeArray = [];\n\n  //   qlData.map(edge => {\n  //     const deliveryDate = getDeliveryDates(edge);\n  //     const deliveryTime = getDeliveryTimes(edge);\n\n  //     if(deliveryTime !== undefined) {\n  //       const processTimesArray = deliveryTime.split(' ');\n  //       const deliveryWindowParse = processTimesArray.slice(0, 2)\n  //       const deliveryDueTime = deliveryWindowParse.join(' ')\n\n  //       dateTimeArray.push(new Date(`${deliveryDate} ${deliveryDueTime}`).toISOString())\n  //     }\n  //     // console.log(dateTimeArray)\n  //     setDataArray(...dataArray, [dataArray, qlData.concat(dateTimeArray)])\n  //   })\n  // }\n\n  // console.log(\"DataArray\", dataArray)\n\n  return (\n    <>\n      <div>\n        <h1>Orders</h1>\n        <div className={\"w-full flex\"}>\n          <button\n            className={\"btn btn-gray mr-2\"}\n            onClick={() => setMethod(\"pickup\")}\n          >\n            Pickups\n          </button>\n          <button\n            className={\"btn btn-gray mr-2\"}\n            onClick={() => setMethod(\"delivery\")}\n          >\n            Deliveries\n          </button>\n          <button\n            className={\"btn btn-gray\"}\n            onClick={() => setMethod(\"shipping\")}\n          >\n            To Ship\n          </button>\n        </div>\n      </div>\n        {data !== undefined && data.orders.edges.map(\n          (edge) =>\n            // Show only the data associated with the Checkout Method\n            getCheckoutMethod(edge) === method && (\n              <div key={edge.node.name} className=\"border p-2\">\n                <h2>Order Name: {getCustomAttributes.getOrderName(edge)}</h2>\n                <h4>Status: {getCustomAttributes.getFulFillmentStatus(edge)}</h4>\n                <h2>Method: {getCustomAttributes.getCheckoutMethod(edge)}</h2>\n                <h3>Customer Name: {getCustomAttributes.getCustomerFullName(edge)}</h3>\n                <h3>Customer Email: {getCustomAttributes.getCustomerEmail(edge)}</h3>\n                {edge.node.note && (\n                  <h4>Customer Note: {getCustomAttributes.getCustomerNote(edge)}</h4>\n                )}\n                <h4>Time Created: {getCustomAttributes.getOrderCreationTime(edge)}</h4>\n              </div>\n            )\n          )}\n    </>\n  );\n};\n\nexport default Orders;\n"
+    ]
+  },
+  "metadata": {},
+  "sourceType": "module"
+}

@@ -1,0 +1,17 @@
+{
+  "ast": null,
+  "code": "import React from \"react\";\nvar __jsx = React.createElement;\nimport GetOrders from '../components/GetOrders';\n\nvar Status = function Status() {\n  return __jsx(GetOrders, null);\n};\n\nexport default Status;",
+  "map": {
+    "version": 3,
+    "sources": [
+      "/home/kiro/Documents/Gemini/shopify-Test/shopify-test-setup/pages/status.js"
+    ],
+    "names": ["GetOrders", "Status"],
+    "mappings": ";;AAAA,OAAOA,SAAP,MAAsB,yBAAtB;;AAEA,IAAMC,MAAM,GAAG,SAATA,MAAS,GAAM;AACnB,SACE,MAAC,SAAD,OADF;AAGD,CAJD;;AAMA,eAAeA,MAAf",
+    "sourcesContent": [
+      "import GetOrders from '../components/GetOrders'\n\nconst Status = () => {\n  return (\n    <GetOrders />\n  )\n}\n\nexport default Status"
+    ]
+  },
+  "metadata": {},
+  "sourceType": "module"
+}

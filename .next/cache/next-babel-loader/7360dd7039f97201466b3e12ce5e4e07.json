@@ -1,0 +1,32 @@
+{
+  "ast": null,
+  "code": "var __jsx = React.createElement;\nimport React, { useState } from \"react\"; // const ORDER_UPDATE = gql`\n//   mutation orderUpdate($input: OrderInput!) {\n//     orderUpdate(input: $input) {\n//       order {\n//         id\n//       }\n//       userErrors {\n//         field\n//         message\n//       }\n//     }\n//   }\n// `;\n\nvar selectStatus = function selectStatus(props) {\n  var id = props.id;\n  console.log(\"select status id\", props);\n  console.log(\"desctructured id: \", id);\n\n  var _useState = useState(\"\"),\n      orderStatus = _useState[0],\n      setOrderStatus = _useState[1];\n\n  var handleStatus = function handleStatus(e) {\n    e.preventDefault();\n    setOrderStatus(e.target.value);\n  };\n\n  console.log(orderStatus);\n  return __jsx(\"div\", null, __jsx(\"label\", {\n    htmlFor: \"order-status-select\"\n  }, \"Update Status:\"), __jsx(\"select\", {\n    name: \"status\",\n    value: orderStatus,\n    onChange: function onChange(e) {\n      return handleStatus(e);\n    }\n  }, __jsx(\"option\", {\n    value: \"\"\n  }, \"--Status--\"), __jsx(\"option\", {\n    value: \"null\"\n  }, \"Cancelled\"), __jsx(\"option\", {\n    value: \"prep\"\n  }, \"In Prep\"), __jsx(\"option\", {\n    value: \"ready\"\n  }, \"Ready\"), __jsx(\"option\", {\n    value: \"notified\"\n  }, \"Customer Notified\")));\n};\n\nexport default selectStatus;",
+  "map": {
+    "version": 3,
+    "sources": [
+      "/home/kiro/Documents/Gemini/shopify-Test/shopify-test-setup/components/SelectStatus.js"
+    ],
+    "names": [
+      "React",
+      "useState",
+      "selectStatus",
+      "props",
+      "id",
+      "console",
+      "log",
+      "orderStatus",
+      "setOrderStatus",
+      "handleStatus",
+      "e",
+      "preventDefault",
+      "target",
+      "value"
+    ],
+    "mappings": ";AAAA,OAAOA,KAAP,IAAgBC,QAAhB,QAAgC,OAAhC,C,CAEA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;;AAEA,IAAMC,YAAY,GAAG,SAAfA,YAAe,CAACC,KAAD,EAAW;AAAA,MACtBC,EADsB,GACfD,KADe,CACtBC,EADsB;AAE9BC,EAAAA,OAAO,CAACC,GAAR,CAAY,kBAAZ,EAAgCH,KAAhC;AACAE,EAAAA,OAAO,CAACC,GAAR,CAAY,oBAAZ,EAAkCF,EAAlC;;AAH8B,kBAKQH,QAAQ,CAAC,EAAD,CALhB;AAAA,MAKvBM,WALuB;AAAA,MAKVC,cALU;;AAO9B,MAAMC,YAAY,GAAG,SAAfA,YAAe,CAACC,CAAD,EAAO;AAC1BA,IAAAA,CAAC,CAACC,cAAF;AACAH,IAAAA,cAAc,CAACE,CAAC,CAACE,MAAF,CAASC,KAAV,CAAd;AACD,GAHD;;AAKAR,EAAAA,OAAO,CAACC,GAAR,CAAYC,WAAZ;AACA,SACE,mBACE;AAAO,IAAA,OAAO,EAAC;AAAf,sBADF,EAGE;AACE,IAAA,IAAI,EAAC,QADP;AAEE,IAAA,KAAK,EAAEA,WAFT;AAGE,IAAA,QAAQ,EAAE,kBAACG,CAAD;AAAA,aAAOD,YAAY,CAACC,CAAD,CAAnB;AAAA;AAHZ,KAKE;AAAQ,IAAA,KAAK,EAAC;AAAd,kBALF,EAME;AAAQ,IAAA,KAAK,EAAC;AAAd,iBANF,EAOE;AAAQ,IAAA,KAAK,EAAC;AAAd,eAPF,EAQE;AAAQ,IAAA,KAAK,EAAC;AAAd,aARF,EASE;AAAQ,IAAA,KAAK,EAAC;AAAd,yBATF,CAHF,CADF;AAiBD,CA9BD;;AAgCA,eAAeR,YAAf",
+    "sourcesContent": [
+      "import React, { useState } from \"react\";\n\n// const ORDER_UPDATE = gql`\n//   mutation orderUpdate($input: OrderInput!) {\n//     orderUpdate(input: $input) {\n//       order {\n//         id\n//       }\n//       userErrors {\n//         field\n//         message\n//       }\n//     }\n//   }\n// `;\n\nconst selectStatus = (props) => {\n  const { id } = props;\n  console.log(\"select status id\", props);\n  console.log(\"desctructured id: \", id);\n\n  const [orderStatus, setOrderStatus] = useState(\"\");\n\n  const handleStatus = (e) => {\n    e.preventDefault();\n    setOrderStatus(e.target.value);\n  };\n\n  console.log(orderStatus);\n  return (\n    <div>\n      <label htmlFor=\"order-status-select\">Update Status:</label>\n\n      <select\n        name=\"status\"\n        value={orderStatus}\n        onChange={(e) => handleStatus(e)}\n      >\n        <option value=\"\">--Status--</option>\n        <option value=\"null\">Cancelled</option>\n        <option value=\"prep\">In Prep</option>\n        <option value=\"ready\">Ready</option>\n        <option value=\"notified\">Customer Notified</option>\n      </select>\n    </div>\n  );\n};\n\nexport default selectStatus;\n"
+    ]
+  },
+  "metadata": {},
+  "sourceType": "module"
+}

@@ -1,0 +1,27 @@
+{
+  "ast": null,
+  "code": "import _slicedToArray from \"@babel/runtime/helpers/esm/slicedToArray\";\nimport React from \"react\";\nvar __jsx = React.createElement;\n\n// const ORDER_UPDATE = gql`\n//   mutation orderUpdate($input: OrderInput!) {\n//     orderUpdate(input: $input) {\n//       order {\n//         id\n//       }\n//       userErrors {\n//         field\n//         message\n//       }\n//     }\n//   }\n// `;\nvar selectStatus = function selectStatus() {\n  var _useState = useState(\"\"),\n      _useState2 = _slicedToArray(_useState, 2),\n      orderStatus = _useState2[0],\n      setOrderStatus = _useState2[1];\n\n  var handleStatus = function handleStatus(e) {\n    e.preventDefault();\n    setOrderStatus(e.target.value);\n  };\n\n  return __jsx(\"div\", null, __jsx(\"label\", {\n    \"for\": \"order-status-select\"\n  }, \"Update Status:\"), __jsx(\"select\", {\n    name: \"status\",\n    value: orderStatus,\n    onChange: function onChange(e) {\n      return handleStatus(e);\n    }\n  }, __jsx(\"option\", {\n    value: \"\"\n  }, \"--Status--\"), __jsx(\"option\", {\n    value: \"null\"\n  }, \"Cancelled\"), __jsx(\"option\", {\n    value: \"prep\"\n  }, \"In Prep\"), __jsx(\"option\", {\n    value: \"ready\"\n  }, \"Ready\"), __jsx(\"option\", {\n    value: \"notified\"\n  }, \"Customer Notified\")));\n};\n\nexport default selectStatus;",
+  "map": {
+    "version": 3,
+    "sources": [
+      "/home/kiro/Documents/Gemini/shopify-Test/shopify-test-setup/components/SelectStatus.js"
+    ],
+    "names": [
+      "selectStatus",
+      "useState",
+      "orderStatus",
+      "setOrderStatus",
+      "handleStatus",
+      "e",
+      "preventDefault",
+      "target",
+      "value"
+    ],
+    "mappings": ";;;;AAEA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AAEA,IAAMA,YAAY,GAAG,SAAfA,YAAe,GAAM;AAAA,kBACaC,QAAQ,CAAC,EAAD,CADrB;AAAA;AAAA,MAClBC,WADkB;AAAA,MACLC,cADK;;AAGzB,MAAMC,YAAY,GAAG,SAAfA,YAAe,CAACC,CAAD,EAAO;AAC1BA,IAAAA,CAAC,CAACC,cAAF;AACAH,IAAAA,cAAc,CAACE,CAAC,CAACE,MAAF,CAASC,KAAV,CAAd;AACD,GAHD;;AAKA,SACE,mBACE;AAAO,WAAI;AAAX,sBADF,EAGE;AAAQ,IAAA,IAAI,EAAC,QAAb;AAAsB,IAAA,KAAK,EAAEN,WAA7B;AAA0C,IAAA,QAAQ,EAAE,kBAACG,CAAD;AAAA,aAAOD,YAAY,CAACC,CAAD,CAAnB;AAAA;AAApD,KACE;AAAQ,IAAA,KAAK,EAAC;AAAd,kBADF,EAEE;AAAQ,IAAA,KAAK,EAAC;AAAd,iBAFF,EAGE;AAAQ,IAAA,KAAK,EAAC;AAAd,eAHF,EAIE;AAAQ,IAAA,KAAK,EAAC;AAAd,aAJF,EAKE;AAAQ,IAAA,KAAK,EAAC;AAAd,yBALF,CAHF,CADF;AAaD,CArBD;;AAuBA,eAAeL,YAAf",
+    "sourcesContent": [
+      "\n\n// const ORDER_UPDATE = gql`\n//   mutation orderUpdate($input: OrderInput!) {\n//     orderUpdate(input: $input) {\n//       order {\n//         id\n//       }\n//       userErrors {\n//         field\n//         message\n//       }\n//     }\n//   }\n// `;\n\nconst selectStatus = () => {\n  const [orderStatus, setOrderStatus] = useState(\"\");\n\n  const handleStatus = (e) => {\n    e.preventDefault();\n    setOrderStatus(e.target.value);\n  };\n\n  return (\n    <div>\n      <label for=\"order-status-select\">Update Status:</label>\n\n      <select name=\"status\" value={orderStatus} onChange={(e) => handleStatus(e)}>\n        <option value=\"\">--Status--</option>\n        <option value=\"null\">Cancelled</option>\n        <option value=\"prep\">In Prep</option>\n        <option value=\"ready\">Ready</option>\n        <option value=\"notified\">Customer Notified</option>\n      </select>\n    </div>\n  )\n};\n\nexport default selectStatus;\n"
+    ]
+  },
+  "metadata": {},
+  "sourceType": "module"
+}

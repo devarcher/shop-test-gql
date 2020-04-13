@@ -1,0 +1,17 @@
+{
+  "ast": null,
+  "code": "var _jsxFileName = \"/home/kiro/Documents/Gemini/shopify-Test/shopify-test-setup/pages/index.js\";\nimport React from \"react\";\nvar __jsx = React.createElement;\nexport default (() => __jsx(\"div\", {\n  className: \"px-4 py-10 shadow-xl rounded-lg bg-gray-100 max-w-md mx-auto sm:max-w-xl\",\n  __self: this,\n  __source: {\n    fileName: _jsxFileName,\n    lineNumber: 2,\n    columnNumber: 3\n  }\n}, __jsx(\"h1\", {\n  className: \"text-indigo-300 font-semibold leading-loose underline sm:text-2xl md:text-1xl md:leading-normal\",\n  __self: this,\n  __source: {\n    fileName: _jsxFileName,\n    lineNumber: 3,\n    columnNumber: 5\n  }\n}, \"Makin' Things\"), __jsx(\"p\", {\n  className: \"text-grey-dark\",\n  __self: this,\n  __source: {\n    fileName: _jsxFileName,\n    lineNumber: 4,\n    columnNumber: 5\n  }\n}, \"with Tailwind CSS\"), __jsx(\"p\", {\n  className: \"text-grey-dark\",\n  __self: this,\n  __source: {\n    fileName: _jsxFileName,\n    lineNumber: 5,\n    columnNumber: 5\n  }\n}, \"and Next\"), __jsx(\"div\", {\n  className: \"mt-4\",\n  __self: this,\n  __source: {\n    fileName: _jsxFileName,\n    lineNumber: 6,\n    columnNumber: 5\n  }\n}, __jsx(\"a\", {\n  href: \"#\",\n  className: \"btn\",\n  __self: this,\n  __source: {\n    fileName: _jsxFileName,\n    lineNumber: 7,\n    columnNumber: 7\n  }\n}, \"Action!\"))));",
+  "map": {
+    "version": 3,
+    "sources": [
+      "/home/kiro/Documents/Gemini/shopify-Test/shopify-test-setup/pages/index.js"
+    ],
+    "names": [],
+    "mappings": ";;;AAAA,gBAAe,MACb;AAAK,EAAA,SAAS,EAAC,0EAAf;AAAA;AAAA;AAAA;AAAA;AAAA;AAAA;AAAA,GACE;AAAI,EAAA,SAAS,EAAC,iGAAd;AAAA;AAAA;AAAA;AAAA;AAAA;AAAA;AAAA,mBADF,EAEE;AAAG,EAAA,SAAS,EAAC,gBAAb;AAAA;AAAA;AAAA;AAAA;AAAA;AAAA;AAAA,uBAFF,EAGE;AAAG,EAAA,SAAS,EAAC,gBAAb;AAAA;AAAA;AAAA;AAAA;AAAA;AAAA;AAAA,cAHF,EAIE;AAAK,EAAA,SAAS,EAAC,MAAf;AAAA;AAAA;AAAA;AAAA;AAAA;AAAA;AAAA,GACE;AAAG,EAAA,IAAI,EAAC,GAAR;AAAY,EAAA,SAAS,EAAC,KAAtB;AAAA;AAAA;AAAA;AAAA;AAAA;AAAA;AAAA,aADF,CAJF,CADF",
+    "sourcesContent": [
+      "export default () => (\n  <div className='px-4 py-10 shadow-xl rounded-lg bg-gray-100 max-w-md mx-auto sm:max-w-xl'>\n    <h1 className=\"text-indigo-300 font-semibold leading-loose underline sm:text-2xl md:text-1xl md:leading-normal\">Makin' Things</h1>\n    <p className=\"text-grey-dark\">with Tailwind CSS</p>\n    <p className=\"text-grey-dark\">and Next</p>\n    <div className='mt-4'>\n      <a href='#' className='btn'>Action!</a>\n    </div>\n  </div>\n)"
+    ]
+  },
+  "metadata": {},
+  "sourceType": "module"
+}

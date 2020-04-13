@@ -1,0 +1,17 @@
+{
+  "ast": null,
+  "code": "import React from \"react\";\nvar __jsx = React.createElement;\n\nvar Products = function Products() {\n  return __jsx(\"h1\", null, \"Products\");\n};\n\nexport default Products;",
+  "map": {
+    "version": 3,
+    "sources": [
+      "/home/kiro/Documents/Gemini/shopify-Test/shopify-test-setup/pages/products.js"
+    ],
+    "names": ["Products"],
+    "mappings": ";;;AAEA,IAAMA,QAAQ,GAAG,SAAXA,QAAW,GAAM;AAErB,SACE,6BADF;AAGD,CALD;;AAOA,eAAeA,QAAf",
+    "sourcesContent": [
+      "\n\nconst Products = () => {\n\n  return (\n    <h1>Products</h1>\n  )\n}\n\nexport default Products"
+    ]
+  },
+  "metadata": {},
+  "sourceType": "module"
+}

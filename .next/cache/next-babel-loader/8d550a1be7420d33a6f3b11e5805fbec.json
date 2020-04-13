@@ -1,0 +1,17 @@
+{
+  "ast": null,
+  "code": "import gql from \"graphql-tag\";\nexport const GET_ORDERS = gql`\n  {\n    shop {\n      id\n      name\n    }\n    orders(first: 10, query: \"fulfillment_status:unshipped\") {\n      edges {\n        node {\n          id\n          name\n          displayFulfillmentStatus\n          note\n          createdAt\n          lineItems(first: 10) {\n            edges {\n              node {\n                title\n                quantity\n              }\n            }\n          }\n          customer {\n            id\n            firstName\n            lastName\n            email\n            phone\n          }\n          customAttributes {\n            key\n            value\n          }\n        }\n      }\n    }\n  }\n`;\nexport const UPDATE_ORDER_STATUS = gql`\n  mutation orderUpdate($input: OrderInput!) {\n    orderUpdate(input: $input) {\n      order {\n        id\n      }\n      userErrors {\n        field\n        message\n      }\n    }\n  }\n`;",
+  "map": {
+    "version": 3,
+    "sources": [
+      "/home/kiro/Documents/Gemini/shopify-Test/shopify-test-setup/queries/queries.js"
+    ],
+    "names": ["gql", "GET_ORDERS", "UPDATE_ORDER_STATUS"],
+    "mappings": "AAAA,OAAOA,GAAP,MAAgB,aAAhB;AAEA,OAAO,MAAMC,UAAU,GAAGD,GAAI;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;CAAvB;AAuCP,OAAO,MAAME,mBAAmB,GAAGF,GAAI;;;;;;;;;;;;CAAhC",
+    "sourcesContent": [
+      "import gql from \"graphql-tag\";\n\nexport const GET_ORDERS = gql`\n  {\n    shop {\n      id\n      name\n    }\n    orders(first: 10, query: \"fulfillment_status:unshipped\") {\n      edges {\n        node {\n          id\n          name\n          displayFulfillmentStatus\n          note\n          createdAt\n          lineItems(first: 10) {\n            edges {\n              node {\n                title\n                quantity\n              }\n            }\n          }\n          customer {\n            id\n            firstName\n            lastName\n            email\n            phone\n          }\n          customAttributes {\n            key\n            value\n          }\n        }\n      }\n    }\n  }\n`;\n\nexport const UPDATE_ORDER_STATUS = gql`\n  mutation orderUpdate($input: OrderInput!) {\n    orderUpdate(input: $input) {\n      order {\n        id\n      }\n      userErrors {\n        field\n        message\n      }\n    }\n  }\n`;"
+    ]
+  },
+  "metadata": {},
+  "sourceType": "module"
+}

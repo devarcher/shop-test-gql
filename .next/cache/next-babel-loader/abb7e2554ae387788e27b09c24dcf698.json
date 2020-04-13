@@ -1,0 +1,17 @@
+{
+  "ast": null,
+  "code": "import React from \"react\";\nvar __jsx = React.createElement;\nexport default (() => __jsx(\"div\", {\n  className: \"px-4 py-10 shadow-xl rounded-lg bg-gray-100 max-w-md mx-auto sm:max-w-xl\"\n}, __jsx(\"h1\", {\n  className: \"text-indigo-300 font-semibold leading-loose underline sm:text-2xl md:text-1xl md:leading-normal\"\n}, \"Makin' Things\"), __jsx(\"p\", {\n  className: \"text-grey-dark\"\n}, \"with Tailwind\"), __jsx(\"p\", {\n  className: \"text-grey-dark\"\n}, \"and Next\"), __jsx(\"div\", {\n  className: \"mt-4\"\n}, __jsx(\"a\", {\n  href: \"#\",\n  className: \"btn\"\n}, \"Action!\"))));",
+  "map": {
+    "version": 3,
+    "sources": [
+      "/home/kiro/Documents/Gemini/shopify-Test/shopify-test-setup/pages/index.js"
+    ],
+    "names": [],
+    "mappings": ";;AAAA,gBAAe,MACb;AAAK,EAAA,SAAS,EAAC;AAAf,GACE;AAAI,EAAA,SAAS,EAAC;AAAd,mBADF,EAIE;AAAG,EAAA,SAAS,EAAC;AAAb,mBAJF,EAKE;AAAG,EAAA,SAAS,EAAC;AAAb,cALF,EAME;AAAK,EAAA,SAAS,EAAC;AAAf,GACE;AAAG,EAAA,IAAI,EAAC,GAAR;AAAY,EAAA,SAAS,EAAC;AAAtB,aADF,CANF,CADF",
+    "sourcesContent": [
+      "export default () => (\n  <div className=\"px-4 py-10 shadow-xl rounded-lg bg-gray-100 max-w-md mx-auto sm:max-w-xl\">\n    <h1 className=\"text-indigo-300 font-semibold leading-loose underline sm:text-2xl md:text-1xl md:leading-normal\">\n      Makin' Things\n    </h1>\n    <p className=\"text-grey-dark\">with Tailwind</p>\n    <p className=\"text-grey-dark\">and Next</p>\n    <div className=\"mt-4\">\n      <a href=\"#\" className=\"btn\">\n        Action!\n      </a>\n    </div>\n  </div>\n);\n"
+    ]
+  },
+  "metadata": {},
+  "sourceType": "module"
+}

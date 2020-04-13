@@ -1,0 +1,38 @@
+{
+  "ast": null,
+  "code": "import React from \"react\";\nvar __jsx = React.createElement;\nimport Orders from \"./Orders\";\nimport { useQuery } from \"react-apollo\";\nimport { GET_ORDERS } from \"../queries/queries\";\nimport { getCheckoutMethod } from \"../utils/getCustomAttributes\";\n\nconst GetOrders = () => {\n  // Apollo data\n  const {\n    data\n  } = useQuery(GET_ORDERS, {\n    pollInterval: 5000\n  });\n  console.log(\"Get Orders\", data);\n\n  if (data && data !== undefined) {\n    data.orders.edges.map(edge => {\n      const tagsPickupMethod = edge.node.tags.find(method => method === \"Pickup Order\");\n      const tagsDeliveryMethod = edge.node.tags.find(method => method === \"Local Delivery Order\");\n      console.log(\"TagsPickupMethod\", tagsPickupMethod);\n      console.log(\"TagsDeliveryMethod\", tagsDeliveryMethod);\n      console.log(getCheckoutMethod(edge));\n    });\n  }\n\n  return __jsx(React.Fragment, null, __jsx(Orders, {\n    data: data\n  }));\n};\n\nexport default GetOrders;",
+  "map": {
+    "version": 3,
+    "sources": [
+      "/home/kiro/Documents/Gemini/shopify-Test/shopify-test-setup/components/GetOrders.js"
+    ],
+    "names": [
+      "Orders",
+      "useQuery",
+      "GET_ORDERS",
+      "getCheckoutMethod",
+      "GetOrders",
+      "data",
+      "pollInterval",
+      "console",
+      "log",
+      "undefined",
+      "orders",
+      "edges",
+      "map",
+      "edge",
+      "tagsPickupMethod",
+      "node",
+      "tags",
+      "find",
+      "method",
+      "tagsDeliveryMethod"
+    ],
+    "mappings": ";;AAAA,OAAOA,MAAP,MAAmB,UAAnB;AACA,SAASC,QAAT,QAAyB,cAAzB;AACA,SAASC,UAAT,QAA2B,oBAA3B;AACA,SAASC,iBAAT,QAAkC,8BAAlC;;AAEA,MAAMC,SAAS,GAAG,MAAM;AACtB;AACA,QAAM;AAAEC,IAAAA;AAAF,MAAWJ,QAAQ,CAACC,UAAD,EAAa;AACpCI,IAAAA,YAAY,EAAE;AADsB,GAAb,CAAzB;AAIAC,EAAAA,OAAO,CAACC,GAAR,CAAY,YAAZ,EAA0BH,IAA1B;;AAEA,MAAGA,IAAI,IAAIA,IAAI,KAAKI,SAApB,EAA+B;AAC7BJ,IAAAA,IAAI,CAACK,MAAL,CAAYC,KAAZ,CAAkBC,GAAlB,CAAuBC,IAAD,IAAU;AAC9B,YAAMC,gBAAgB,GAAGD,IAAI,CAACE,IAAL,CAAUC,IAAV,CAAeC,IAAf,CAAoBC,MAAM,IAAIA,MAAM,KAAK,cAAzC,CAAzB;AACA,YAAMC,kBAAkB,GAAGN,IAAI,CAACE,IAAL,CAAUC,IAAV,CAAeC,IAAf,CAAoBC,MAAM,IAAIA,MAAM,KAAK,sBAAzC,CAA3B;AACAX,MAAAA,OAAO,CAACC,GAAR,CAAY,kBAAZ,EAAgCM,gBAAhC;AACAP,MAAAA,OAAO,CAACC,GAAR,CAAY,oBAAZ,EAAkCW,kBAAlC;AAEAZ,MAAAA,OAAO,CAACC,GAAR,CAAYL,iBAAiB,CAACU,IAAD,CAA7B;AACD,KAPD;AAQD;;AAED,SACE,4BACE,MAAC,MAAD;AAAQ,IAAA,IAAI,EAAER;AAAd,IADF,CADF;AAKD,CAxBD;;AA0BA,eAAeD,SAAf",
+    "sourcesContent": [
+      "import Orders from \"./Orders\";\nimport { useQuery } from \"react-apollo\";\nimport { GET_ORDERS } from \"../queries/queries\";\nimport { getCheckoutMethod } from \"../utils/getCustomAttributes\";\n\nconst GetOrders = () => {\n  // Apollo data\n  const { data } = useQuery(GET_ORDERS, {\n    pollInterval: 5000,\n  });\n\n  console.log(\"Get Orders\", data);\n\n  if(data && data !== undefined) {\n    data.orders.edges.map((edge) => {\n      const tagsPickupMethod = edge.node.tags.find(method => method === \"Pickup Order\")\n      const tagsDeliveryMethod = edge.node.tags.find(method => method === \"Local Delivery Order\")\n      console.log(\"TagsPickupMethod\", tagsPickupMethod)\n      console.log(\"TagsDeliveryMethod\", tagsDeliveryMethod)\n\n      console.log(getCheckoutMethod(edge))\n    })\n  }\n\n  return (\n    <>\n      <Orders data={data} />\n    </>\n  );\n};\n\nexport default GetOrders;\n"
+    ]
+  },
+  "metadata": {},
+  "sourceType": "module"
+}

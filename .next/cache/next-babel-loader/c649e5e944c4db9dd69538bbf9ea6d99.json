@@ -1,0 +1,34 @@
+{
+  "ast": null,
+  "code": "import React from \"react\";\nvar __jsx = React.createElement;\nimport gql from 'graphql-tag';\nimport { Query } from 'react-apollo';\nconst GET_ORDERS = gql`\n  {\n \tshop {\n    id\n    name\n  }\n  orders(first:10) {\n    edges {\n      node {\n        id\n        name\n        displayFulfillmentStatus\n        note\n      }\n    }\n  }\n}\n`;\n\nconst Orders = () => {\n  return __jsx(React.Fragment, null, __jsx(\"h1\", null, \"Orders\"), __jsx(Query, {\n    query: GET_ORDERS\n  }, ({\n    data,\n    loading,\n    error\n  }) => {\n    if (loading) return __jsx(\"div\", null, \"Loading\\u2026\");\n    if (error) return __jsx(\"div\", null, error.message);\n    return data.orders.edges.map(edge => {\n      __jsx(\"p\", {\n        key: edge.node.displayName\n      }, edge.node.displayName);\n    });\n    console.log(data);\n  }));\n};\n\nexport default Orders;",
+  "map": {
+    "version": 3,
+    "sources": [
+      "/home/kiro/Documents/Gemini/shopify-Test/shopify-test-setup/pages/orders.js"
+    ],
+    "names": [
+      "gql",
+      "Query",
+      "GET_ORDERS",
+      "Orders",
+      "data",
+      "loading",
+      "error",
+      "message",
+      "orders",
+      "edges",
+      "map",
+      "edge",
+      "node",
+      "displayName",
+      "console",
+      "log"
+    ],
+    "mappings": ";;AAAA,OAAOA,GAAP,MAAgB,aAAhB;AACA,SAASC,KAAT,QAAsB,cAAtB;AAEA,MAAMC,UAAU,GAAGF,GAAI;;;;;;;;;;;;;;;;;CAAvB;;AAmBA,MAAMG,MAAM,GAAG,MAAM;AACnB,SACE,4BACA,2BADA,EAEA,MAAC,KAAD;AAAO,IAAA,KAAK,EAAED;AAAd,KACG,CAAC;AAAEE,IAAAA,IAAF;AAAQC,IAAAA,OAAR;AAAiBC,IAAAA;AAAjB,GAAD,KAA8B;AAC3B,QAAID,OAAJ,EAAa,OAAO,mCAAP;AACb,QAAIC,KAAJ,EAAW,OAAO,mBAAMA,KAAK,CAACC,OAAZ,CAAP;AAEX,WAAOH,IAAI,CAACI,MAAL,CAAYC,KAAZ,CAAkBC,GAAlB,CAAuBC,IAAD,IAAU;AACvC;AAAG,QAAA,GAAG,EAAEA,IAAI,CAACC,IAAL,CAAUC;AAAlB,SAAgCF,IAAI,CAACC,IAAL,CAAUC,WAA1C;AACC,KAFM,CAAP;AAGAC,IAAAA,OAAO,CAACC,GAAR,CAAYX,IAAZ;AACH,GATH,CAFA,CADF;AAgBD,CAjBD;;AAmBA,eAAeD,MAAf",
+    "sourcesContent": [
+      "import gql from 'graphql-tag';\nimport { Query } from 'react-apollo';\n\nconst GET_ORDERS = gql`\n  {\n \tshop {\n    id\n    name\n  }\n  orders(first:10) {\n    edges {\n      node {\n        id\n        name\n        displayFulfillmentStatus\n        note\n      }\n    }\n  }\n}\n`;\n\nconst Orders = () => {\n  return (\n    <>\n    <h1>Orders</h1>\n    <Query query={GET_ORDERS}>\n      {({ data, loading, error }) => {\n          if (loading) return <div>Loading…</div>;\n          if (error) return <div>{error.message}</div>;\n\n          return data.orders.edges.map((edge) => {\n          <p key={edge.node.displayName}>{edge.node.displayName}</p>\n          })\n          console.log(data);\n      }}\n    </Query>\n    </>\n  )\n}\n\nexport default Orders"
+    ]
+  },
+  "metadata": {},
+  "sourceType": "module"
+}

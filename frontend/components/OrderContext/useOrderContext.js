@@ -10,6 +10,7 @@ const useOrderDataContext = (data) => {
   return {
     orderData: orderDataState,
     setOrderDataContext,
+    isSorted: false
   };
 };
 

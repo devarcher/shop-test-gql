@@ -1,0 +1,46 @@
+{
+  "ast": null,
+  "code": "import _ from \"lodash\";\nexport const getCheckoutMethod = edge => {\n  return _.chain(edge.node.customAttributes).find({\n    key: \"Checkout-Method\"\n  }).get(\"value\").value();\n};\nexport const getDeliveryDates = edge => {\n  return _.chain(edge.node.customAttributes).find({\n    key: \"Delivery-Date\"\n  }).get(\"value\").value();\n};\nexport const getPickupTimes = edge => {\n  return _.chain(edge.node.customAttributes).find({\n    key: \"Pickup-Time\"\n  }).get(\"value\").value();\n};\nexport const getDeliveryTimes = edge => {\n  return _.chain(edge.node.customAttributes).find({\n    key: \"Delivery-Time\"\n  }).get(\"value\").value();\n};\nexport const getOrderName = edge => {\n  return edge.node.name;\n};\nexport const getFulFillmentStatus = edge => {\n  return edge.node.displayFulfillmentStatus;\n};\nexport const getCustomerFullName = edge => {\n  return `${edge.node.customer.firstName} ${edge.node.customer.lastName}`;\n};\nexport const getCustomerEmail = edge => {\n  return edge.node.customer.email;\n};\nexport const getCustomerNote = edge => {\n  return edge.node.customer.note;\n};\nexport const getOrderCreationTime = edge => {\n  return edge.node.createdAt;\n};\nexport default getCustomAttributes;",
+  "map": {
+    "version": 3,
+    "sources": [
+      "/home/kiro/Documents/Gemini/shopify-Test/shopify-test-setup/utils/getCustomAttributes.js"
+    ],
+    "names": [
+      "_",
+      "getCheckoutMethod",
+      "edge",
+      "chain",
+      "node",
+      "customAttributes",
+      "find",
+      "key",
+      "get",
+      "value",
+      "getDeliveryDates",
+      "getPickupTimes",
+      "getDeliveryTimes",
+      "getOrderName",
+      "name",
+      "getFulFillmentStatus",
+      "displayFulfillmentStatus",
+      "getCustomerFullName",
+      "customer",
+      "firstName",
+      "lastName",
+      "getCustomerEmail",
+      "email",
+      "getCustomerNote",
+      "note",
+      "getOrderCreationTime",
+      "createdAt",
+      "getCustomAttributes"
+    ],
+    "mappings": "AAAA,OAAOA,CAAP,MAAc,QAAd;AAEA,OAAO,MAAMC,iBAAiB,GAAIC,IAAD,IAAU;AACzC,SAAOF,CAAC,CAACG,KAAF,CAAQD,IAAI,CAACE,IAAL,CAAUC,gBAAlB,EACJC,IADI,CACC;AAAEC,IAAAA,GAAG,EAAE;AAAP,GADD,EAEJC,GAFI,CAEA,OAFA,EAGJC,KAHI,EAAP;AAID,CALM;AAMP,OAAO,MAAMC,gBAAgB,GAAIR,IAAD,IAAU;AACxC,SAAOF,CAAC,CAACG,KAAF,CAAQD,IAAI,CAACE,IAAL,CAAUC,gBAAlB,EACJC,IADI,CACC;AAAEC,IAAAA,GAAG,EAAE;AAAP,GADD,EAEJC,GAFI,CAEA,OAFA,EAGJC,KAHI,EAAP;AAID,CALM;AAMP,OAAO,MAAME,cAAc,GAAIT,IAAD,IAAU;AACtC,SAAOF,CAAC,CAACG,KAAF,CAAQD,IAAI,CAACE,IAAL,CAAUC,gBAAlB,EACJC,IADI,CACC;AAAEC,IAAAA,GAAG,EAAE;AAAP,GADD,EAEJC,GAFI,CAEA,OAFA,EAGJC,KAHI,EAAP;AAID,CALM;AAMP,OAAO,MAAMG,gBAAgB,GAAIV,IAAD,IAAU;AACxC,SAAOF,CAAC,CAACG,KAAF,CAAQD,IAAI,CAACE,IAAL,CAAUC,gBAAlB,EACJC,IADI,CACC;AAAEC,IAAAA,GAAG,EAAE;AAAP,GADD,EAEJC,GAFI,CAEA,OAFA,EAGJC,KAHI,EAAP;AAID,CALM;AAMP,OAAO,MAAMI,YAAY,GAAIX,IAAD,IAAU;AACpC,SAAOA,IAAI,CAACE,IAAL,CAAUU,IAAjB;AACD,CAFM;AAGP,OAAO,MAAMC,oBAAoB,GAAIb,IAAD,IAAU;AAC5C,SAAOA,IAAI,CAACE,IAAL,CAAUY,wBAAjB;AACD,CAFM;AAGP,OAAO,MAAMC,mBAAmB,GAAIf,IAAD,IAAU;AAC3C,SAAQ,GAAEA,IAAI,CAACE,IAAL,CAAUc,QAAV,CAAmBC,SAAU,IAAGjB,IAAI,CAACE,IAAL,CAAUc,QAAV,CAAmBE,QAAS,EAAtE;AACD,CAFM;AAGP,OAAO,MAAMC,gBAAgB,GAAInB,IAAD,IAAU;AACxC,SAAOA,IAAI,CAACE,IAAL,CAAUc,QAAV,CAAmBI,KAA1B;AACD,CAFM;AAGP,OAAO,MAAMC,eAAe,GAAIrB,IAAD,IAAU;AACvC,SAAOA,IAAI,CAACE,IAAL,CAAUc,QAAV,CAAmBM,IAA1B;AACD,CAFM;AAGP,OAAO,MAAMC,oBAAoB,GAAIvB,IAAD,IAAU;AAC5C,SAAOA,IAAI,CAACE,IAAL,CAAUsB,SAAjB;AACD,CAFM;AAIP,eAAeC,mBAAf",
+    "sourcesContent": [
+      "import _ from \"lodash\";\n\nexport const getCheckoutMethod = (edge) => {\n  return _.chain(edge.node.customAttributes)\n    .find({ key: \"Checkout-Method\" })\n    .get(\"value\")\n    .value();\n};\nexport const getDeliveryDates = (edge) => {\n  return _.chain(edge.node.customAttributes)\n    .find({ key: \"Delivery-Date\" })\n    .get(\"value\")\n    .value();\n};\nexport const getPickupTimes = (edge) => {\n  return _.chain(edge.node.customAttributes)\n    .find({ key: \"Pickup-Time\" })\n    .get(\"value\")\n    .value();\n};\nexport const getDeliveryTimes = (edge) => {\n  return _.chain(edge.node.customAttributes)\n    .find({ key: \"Delivery-Time\" })\n    .get(\"value\")\n    .value();\n};\nexport const getOrderName = (edge) => {\n  return edge.node.name;\n};\nexport const getFulFillmentStatus = (edge) => {\n  return edge.node.displayFulfillmentStatus;\n};\nexport const getCustomerFullName = (edge) => {\n  return `${edge.node.customer.firstName} ${edge.node.customer.lastName}`;\n};\nexport const getCustomerEmail = (edge) => {\n  return edge.node.customer.email;\n};\nexport const getCustomerNote = (edge) => {\n  return edge.node.customer.note;\n};\nexport const getOrderCreationTime = (edge) => {\n  return edge.node.createdAt;\n};\n\nexport default getCustomAttributes"
+    ]
+  },
+  "metadata": {},
+  "sourceType": "module"
+}

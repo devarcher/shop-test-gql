@@ -1,0 +1,28 @@
+{
+  "ast": null,
+  "code": "import _taggedTemplateLiteral from \"@babel/runtime/helpers/esm/taggedTemplateLiteral\";\nimport React from \"react\";\nvar __jsx = React.createElement;\n\nfunction _templateObject() {\n  var data = _taggedTemplateLiteral([\"\\n  {\\n \\tshop {\\n    id\\n    name\\n  }\\n  orders(first:10) {\\n    edges {\\n      node {\\n        id\\n        name\\n        displayFulfillmentStatus\\n        note\\n      }\\n    }\\n  }\\n}\\n\"]);\n\n  _templateObject = function _templateObject() {\n    return data;\n  };\n\n  return data;\n}\n\nimport gql from 'graphql-tag';\nimport { Query } from 'react-apollo';\nvar GET_ORDERS = gql(_templateObject());\n\nvar Orders = function Orders() {\n  return __jsx(React.Fragment, null, __jsx(\"h1\", null, \"Orders\"), __jsx(Query, {\n    query: GET_ORDERS\n  }, function (_ref) {\n    var data = _ref.data,\n        loading = _ref.loading,\n        error = _ref.error;\n    if (loading) return __jsx(\"div\", null, \"Loading\\u2026\");\n    if (error) return __jsx(\"div\", null, error.message);\n    console.log(data);\n  }));\n};\n\nexport default Orders;",
+  "map": {
+    "version": 3,
+    "sources": [
+      "/home/kiro/Documents/Gemini/shopify-Test/shopify-test-setup/pages/orders.js"
+    ],
+    "names": [
+      "gql",
+      "Query",
+      "GET_ORDERS",
+      "Orders",
+      "data",
+      "loading",
+      "error",
+      "message",
+      "console",
+      "log"
+    ],
+    "mappings": ";;;;;;;;;;;;;;AAAA,OAAOA,GAAP,MAAgB,aAAhB;AACA,SAASC,KAAT,QAAsB,cAAtB;AAEA,IAAMC,UAAU,GAAGF,GAAH,mBAAhB;;AAmBA,IAAMG,MAAM,GAAG,SAATA,MAAS,GAAM;AAGnB,SACE,4BACA,2BADA,EAEA,MAAC,KAAD;AAAO,IAAA,KAAK,EAAED;AAAd,KACG,gBAA8B;AAAA,QAA3BE,IAA2B,QAA3BA,IAA2B;AAAA,QAArBC,OAAqB,QAArBA,OAAqB;AAAA,QAAZC,KAAY,QAAZA,KAAY;AAC3B,QAAID,OAAJ,EAAa,OAAO,mCAAP;AACb,QAAIC,KAAJ,EAAW,OAAO,mBAAMA,KAAK,CAACC,OAAZ,CAAP;AACXC,IAAAA,OAAO,CAACC,GAAR,CAAYL,IAAZ;AACH,GALH,CAFA,CADF;AAYD,CAfD;;AAiBA,eAAeD,MAAf",
+    "sourcesContent": [
+      "import gql from 'graphql-tag';\nimport { Query } from 'react-apollo';\n\nconst GET_ORDERS = gql`\n  {\n \tshop {\n    id\n    name\n  }\n  orders(first:10) {\n    edges {\n      node {\n        id\n        name\n        displayFulfillmentStatus\n        note\n      }\n    }\n  }\n}\n`;\n\nconst Orders = () => {\n\n\n  return (\n    <>\n    <h1>Orders</h1>\n    <Query query={GET_ORDERS}>\n      {({ data, loading, error }) => {\n          if (loading) return <div>Loading…</div>;\n          if (error) return <div>{error.message}</div>;\n          console.log(data);\n      }}\n    </Query>\n    </>\n  )\n}\n\nexport default Orders"
+    ]
+  },
+  "metadata": {},
+  "sourceType": "module"
+}

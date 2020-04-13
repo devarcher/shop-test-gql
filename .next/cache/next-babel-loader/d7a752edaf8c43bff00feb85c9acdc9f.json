@@ -1,0 +1,28 @@
+{
+  "ast": null,
+  "code": "import React from \"react\";\nvar __jsx = React.createElement;\nimport Orders from \"./Orders\";\nimport { useQuery } from \"react-apollo\";\nimport { GET_ORDERS } from \"../queries/queries\";\n\nconst GetOrders = () => {\n  // Apollo data\n  const {\n    loading,\n    error,\n    data\n  } = useQuery(GET_ORDERS, {\n    pollInterval: 30000\n  });\n  if (loading) return null;\n  if (error) return `Error! ${error}`;\n  console.log(\"Get Orders\", data);\n  return __jsx(React.Fragment, null, __jsx(Orders, {\n    data: data\n  }));\n};\n\nexport default GetOrders;",
+  "map": {
+    "version": 3,
+    "sources": [
+      "/home/kiro/Documents/Gemini/shopify-Test/shopify-test-setup/components/GetOrders.js"
+    ],
+    "names": [
+      "Orders",
+      "useQuery",
+      "GET_ORDERS",
+      "GetOrders",
+      "loading",
+      "error",
+      "data",
+      "pollInterval",
+      "console",
+      "log"
+    ],
+    "mappings": ";;AAAA,OAAOA,MAAP,MAAmB,UAAnB;AACA,SAASC,QAAT,QAAyB,cAAzB;AACA,SAASC,UAAT,QAA2B,oBAA3B;;AAEA,MAAMC,SAAS,GAAG,MAAM;AACtB;AACA,QAAM;AAAEC,IAAAA,OAAF;AAAWC,IAAAA,KAAX;AAAkBC,IAAAA;AAAlB,MAA2BL,QAAQ,CAACC,UAAD,EAAa;AACpDK,IAAAA,YAAY,EAAE;AADsC,GAAb,CAAzC;AAIA,MAAIH,OAAJ,EAAa,OAAO,IAAP;AACb,MAAIC,KAAJ,EAAW,OAAQ,UAASA,KAAM,EAAvB;AAEXG,EAAAA,OAAO,CAACC,GAAR,CAAY,YAAZ,EAA0BH,IAA1B;AAEA,SACE,4BACE,MAAC,MAAD;AAAQ,IAAA,IAAI,EAAEA;AAAd,IADF,CADF;AAKD,CAhBD;;AAkBA,eAAeH,SAAf",
+    "sourcesContent": [
+      "import Orders from \"./Orders\";\nimport { useQuery } from \"react-apollo\";\nimport { GET_ORDERS } from \"../queries/queries\";\n\nconst GetOrders = () => {\n  // Apollo data\n  const { loading, error, data } = useQuery(GET_ORDERS, {\n    pollInterval: 30000,\n  });\n\n  if (loading) return null;\n  if (error) return `Error! ${error}`;\n\n  console.log(\"Get Orders\", data);\n\n  return (\n    <>\n      <Orders data={data} />\n    </>\n  );\n};\n\nexport default GetOrders;\n"
+    ]
+  },
+  "metadata": {},
+  "sourceType": "module"
+}

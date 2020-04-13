@@ -1,0 +1,17 @@
+{
+  "ast": null,
+  "code": "import React from \"react\";\nvar __jsx = React.createElement;\n\n// const ORDER_UPDATE = gql`\n//   mutation orderUpdate($input: OrderInput!) {\n//     orderUpdate(input: $input) {\n//       order {\n//         id\n//       }\n//       userErrors {\n//         field\n//         message\n//       }\n//     }\n//   }\n// `;\nconst selectStatus = () => {\n  __jsx(\"div\", null, __jsx(\"label\", {\n    for: \"order-status-select\"\n  }, \"Update Status:\"), __jsx(\"select\", {\n    name: \"status\",\n    value: orderStatus,\n    onChange: e => handleStatus(e)\n  }, __jsx(\"option\", {\n    value: \"\"\n  }, \"--Status--\"), __jsx(\"option\", {\n    value: \"null\"\n  }, \"Cancelled\"), __jsx(\"option\", {\n    value: \"prep\"\n  }, \"In Prep\"), __jsx(\"option\", {\n    value: \"ready\"\n  }, \"Ready\"), __jsx(\"option\", {\n    value: \"notified\"\n  }, \"Customer Notified\")));\n};\n\nexport default selectStatus;",
+  "map": {
+    "version": 3,
+    "sources": [
+      "/home/kiro/Documents/Gemini/shopify-Test/shopify-test-setup/components/SelectStatus.js"
+    ],
+    "names": ["selectStatus", "orderStatus", "e", "handleStatus"],
+    "mappings": ";;;AAEA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AAEA,MAAMA,YAAY,GAAG,MAAM;AACzB,qBACE;AAAO,IAAA,GAAG,EAAC;AAAX,sBADF,EAGE;AAAQ,IAAA,IAAI,EAAC,QAAb;AAAsB,IAAA,KAAK,EAAEC,WAA7B;AAA0C,IAAA,QAAQ,EAAGC,CAAD,IAAOC,YAAY,CAACD,CAAD;AAAvE,KACE;AAAQ,IAAA,KAAK,EAAC;AAAd,kBADF,EAEE;AAAQ,IAAA,KAAK,EAAC;AAAd,iBAFF,EAGE;AAAQ,IAAA,KAAK,EAAC;AAAd,eAHF,EAIE;AAAQ,IAAA,KAAK,EAAC;AAAd,aAJF,EAKE;AAAQ,IAAA,KAAK,EAAC;AAAd,yBALF,CAHF;AAWD,CAZD;;AAcA,eAAeF,YAAf",
+    "sourcesContent": [
+      "\n\n// const ORDER_UPDATE = gql`\n//   mutation orderUpdate($input: OrderInput!) {\n//     orderUpdate(input: $input) {\n//       order {\n//         id\n//       }\n//       userErrors {\n//         field\n//         message\n//       }\n//     }\n//   }\n// `;\n\nconst selectStatus = () => {\n  <div>\n    <label for=\"order-status-select\">Update Status:</label>\n\n    <select name=\"status\" value={orderStatus} onChange={(e) => handleStatus(e)}>\n      <option value=\"\">--Status--</option>\n      <option value=\"null\">Cancelled</option>\n      <option value=\"prep\">In Prep</option>\n      <option value=\"ready\">Ready</option>\n      <option value=\"notified\">Customer Notified</option>\n    </select>\n  </div>\n};\n\nexport default selectStatus;\n"
+    ]
+  },
+  "metadata": {},
+  "sourceType": "module"
+}

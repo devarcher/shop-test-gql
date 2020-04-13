@@ -1,0 +1,44 @@
+{
+  "ast": null,
+  "code": "var __jsx = React.createElement;\nimport React, { useState } from \"react\";\nimport { ADD_ORDER_TAGS, REMOVE_ORDER_TAGS, GET_ORDERS } from \"../queries/queries\";\nimport { useMutation } from \"react-apollo\";\n\nconst selectStatus = props => {\n  const {\n    id\n  } = props;\n  const {\n    0: orderStatus,\n    1: setOrderStatus\n  } = useState(\"\");\n  const [removeOrderrTags] = useMutation(REMOVE_ORDER_TAGS);\n  const [addOrderTags, {\n    loading: mutationLoading,\n    error: mutationError\n  }] = useMutation(ADD_ORDER_TAGS);\n\n  const handleUpdateStatus = e => {\n    e.preventDefault();\n    setOrderStatus(e.target.value);\n    addOrderTags({\n      variables: {\n        \"id\": id,\n        \"tags\": [e.target.value]\n      },\n      refetchQueries: [{\n        query: GET_ORDERS,\n        variables: {\n          tags: \"tags\"\n        }\n      }]\n    });\n  };\n\n  return __jsx(\"div\", {\n    className: \"p-2\"\n  }, __jsx(\"label\", {\n    htmlFor: \"order-status-select\"\n  }, \"Update Status:\"), __jsx(\"select\", {\n    name: \"status\",\n    value: orderStatus,\n    onChange: e => handleUpdateStatus(e)\n  }, __jsx(\"option\", {\n    value: \"\"\n  }, \"--Status--\"), __jsx(\"option\", {\n    value: \"null\"\n  }, \"Cancelled\"), __jsx(\"option\", {\n    value: \"prep\"\n  }, \"In Prep\"), __jsx(\"option\", {\n    value: \"ready\"\n  }, \"Ready\"), __jsx(\"option\", {\n    value: \"notified\"\n  }, \"Customer Notified\"), __jsx(\"option\", {\n    value: \"complete\"\n  }, \"Order Completed\")), mutationLoading && __jsx(\"p\", null, \"Loading...\"), mutationError && __jsx(\"p\", null, \"Error :( Please try again\"));\n};\n\nexport default selectStatus;",
+  "map": {
+    "version": 3,
+    "sources": [
+      "/home/kiro/Documents/Gemini/shopify-Test/shopify-test-setup/components/SelectStatus.js"
+    ],
+    "names": [
+      "React",
+      "useState",
+      "ADD_ORDER_TAGS",
+      "REMOVE_ORDER_TAGS",
+      "GET_ORDERS",
+      "useMutation",
+      "selectStatus",
+      "props",
+      "id",
+      "orderStatus",
+      "setOrderStatus",
+      "removeOrderrTags",
+      "addOrderTags",
+      "loading",
+      "mutationLoading",
+      "error",
+      "mutationError",
+      "handleUpdateStatus",
+      "e",
+      "preventDefault",
+      "target",
+      "value",
+      "variables",
+      "refetchQueries",
+      "query",
+      "tags"
+    ],
+    "mappings": ";AAAA,OAAOA,KAAP,IAAgBC,QAAhB,QAAgC,OAAhC;AACA,SAASC,cAAT,EAAyBC,iBAAzB,EAA4CC,UAA5C,QAA8D,oBAA9D;AACA,SAASC,WAAT,QAA4B,cAA5B;;AAEA,MAAMC,YAAY,GAAIC,KAAD,IAAW;AAC9B,QAAM;AAAEC,IAAAA;AAAF,MAASD,KAAf;AACA,QAAM;AAAA,OAACE,WAAD;AAAA,OAAcC;AAAd,MAAgCT,QAAQ,CAAC,EAAD,CAA9C;AAEA,QAAM,CAACU,gBAAD,IAAqBN,WAAW,CAACF,iBAAD,CAAtC;AACA,QAAM,CAACS,YAAD,EAAe;AAAEC,IAAAA,OAAO,EAAEC,eAAX;AAA4BC,IAAAA,KAAK,EAAEC;AAAnC,GAAf,IAAsEX,WAAW,CAACH,cAAD,CAAvF;;AAIA,QAAMe,kBAAkB,GAAIC,CAAD,IAAO;AAChCA,IAAAA,CAAC,CAACC,cAAF;AACAT,IAAAA,cAAc,CAACQ,CAAC,CAACE,MAAF,CAASC,KAAV,CAAd;AAKAT,IAAAA,YAAY,CAAC;AACXU,MAAAA,SAAS,EAAE;AACP,cAAMd,EADC;AAEP,gBAAQ,CAACU,CAAC,CAACE,MAAF,CAASC,KAAV;AAFD,OADA;AAKXE,MAAAA,cAAc,EAAE,CAAC;AACfC,QAAAA,KAAK,EAAEpB,UADQ;AAEfkB,QAAAA,SAAS,EAAE;AAAEG,UAAAA,IAAI,EAAE;AAAR;AAFI,OAAD;AALL,KAAD,CAAZ;AASD,GAhBD;;AAkBA,SACE;AAAK,IAAA,SAAS,EAAE;AAAhB,KACE;AAAO,IAAA,OAAO,EAAC;AAAf,sBADF,EAGE;AACE,IAAA,IAAI,EAAC,QADP;AAEE,IAAA,KAAK,EAAEhB,WAFT;AAGE,IAAA,QAAQ,EAAGS,CAAD,IAAOD,kBAAkB,CAACC,CAAD;AAHrC,KAKE;AAAQ,IAAA,KAAK,EAAC;AAAd,kBALF,EAME;AAAQ,IAAA,KAAK,EAAC;AAAd,iBANF,EAOE;AAAQ,IAAA,KAAK,EAAC;AAAd,eAPF,EAQE;AAAQ,IAAA,KAAK,EAAC;AAAd,aARF,EASE;AAAQ,IAAA,KAAK,EAAC;AAAd,yBATF,EAUE;AAAQ,IAAA,KAAK,EAAC;AAAd,uBAVF,CAHF,EAeGJ,eAAe,IAAI,8BAftB,EAgBGE,aAAa,IAAI,6CAhBpB,CADF;AAoBD,CA/CD;;AAiDA,eAAeV,YAAf",
+    "sourcesContent": [
+      "import React, { useState } from \"react\";\nimport { ADD_ORDER_TAGS, REMOVE_ORDER_TAGS, GET_ORDERS } from \"../queries/queries\";\nimport { useMutation } from \"react-apollo\";\n\nconst selectStatus = (props) => {\n  const { id } = props;\n  const [orderStatus, setOrderStatus] = useState(\"\");\n\n  const [removeOrderrTags] = useMutation(REMOVE_ORDER_TAGS);\n  const [addOrderTags, { loading: mutationLoading, error: mutationError}, ] = useMutation(ADD_ORDER_TAGS);\n\n\n\n  const handleUpdateStatus = (e) => {\n    e.preventDefault();\n    setOrderStatus(e.target.value);\n\n\n\n\n    addOrderTags({\n      variables: {\n          \"id\": id,\n          \"tags\": [e.target.value]\n      },\n      refetchQueries: [{ \n        query: GET_ORDERS, \n        variables: { tags: \"tags\" } }]\n    });\n  };\n\n  return (\n    <div className={\"p-2\"}>\n      <label htmlFor=\"order-status-select\">Update Status:</label>\n\n      <select\n        name=\"status\"\n        value={orderStatus}\n        onChange={(e) => handleUpdateStatus(e)}\n      >\n        <option value=\"\">--Status--</option>\n        <option value=\"null\">Cancelled</option>\n        <option value=\"prep\">In Prep</option>\n        <option value=\"ready\">Ready</option>\n        <option value=\"notified\">Customer Notified</option>\n        <option value=\"complete\">Order Completed</option>\n      </select>\n      {mutationLoading && <p>Loading...</p>}\n      {mutationError && <p>Error :( Please try again</p>}\n    </div>\n  );\n};\n\nexport default selectStatus;\n"
+    ]
+  },
+  "metadata": {},
+  "sourceType": "module"
+}
