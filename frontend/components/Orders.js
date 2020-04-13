@@ -1,4 +1,3 @@
-import React, { useState } from "react";
 import SelectStatus from "./SelectStatus";
 // import _ from "lodash";
 import {
@@ -14,16 +13,14 @@ import {
   getOrderStatus,
 } from "../utils/getCustomAttributes";
 
+// import { format, addDays, parseISO } from 'date-fns';
+
 const Orders = (props) => {
-  const { data } = props;
-  const [method, setMethod] = useState("");
+  const { data, method, setMethod, query } = props;
 
-  console.log("Orders", data)
-
-  // Sort Array here by Time Tag? 
+  // If Deliverys - grab time window and order by window start time
+  // Pickups will be ordered in query
   // Sort here, and update the setOrderDataContext if not sorted.
-
-  // Make Date Selector - 
 
   return (
     <>
@@ -64,15 +61,16 @@ const Orders = (props) => {
                   {edge.node.note && (
                     <h4>Customer Note: {getCustomerNote(edge)}</h4>
                   )}
-                  <h4>Due Date: {getDeliveryDates(edge)}</h4>
-                  <h4>Due Time: {getDeliveryTimes(edge)}</h4>
-                  <h5>Order id: {edge.node.id}</h5>
-
-                  {/* Make lodash method to find status */}
-                  <h1>Order Status: {edge.node.tags}</h1>
+                  <h2>Order Created: {edge.node.createdAt}</h2>
+                  <h1> Order Status: {getOrderStatus(edge)}</h1>
+                  <h2>Pickup Time: {edge.node.tags[0]}</h2>
+                  <h3>Order Id: {edge.node.id}</h3>
                 </div>
-                {/* {console.log("customAttributes", edge.node.customAttributes)} */}
-                <SelectStatus id={edge.node.id} />
+                <SelectStatus
+                  id={edge.node.id}
+                  tags={edge.node.tags}
+                  query={query}
+                />
               </div>
             )}
           </div>
@@ -82,7 +80,6 @@ const Orders = (props) => {
 };
 
 export default Orders;
-
 
 // // Local State
 // const [timeStampArray, setTimeStampArray] = useState([]);

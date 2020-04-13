@@ -1,18 +1,44 @@
 import React, { useState } from "react";
+
 import {
   ADD_ORDER_TAGS,
+  REMOVE_ORDER_TAGS,
   GET_ORDERS,
 } from "../queries/queries";
 import { useMutation } from "react-apollo";
 
 const selectStatus = (props) => {
-  const { id } = props;
+  const { id, tags, query } = props;
+
+  // OrderStatus Dropdown State
   const [orderStatus, setOrderStatus] = useState("");
 
-  const [addOrderTags, { loading: mutationLoading, error: mutationError }] = useMutation(ADD_ORDER_TAGS);
+  // Mutation Hooks
+  const [addOrderTags] = useMutation(ADD_ORDER_TAGS);
+  const [removeOrderTags] = useMutation(REMOVE_ORDER_TAGS);
 
-  const handleUpdateStatus = (e) => {
+  // Status update in Select Status Component
+  const handleUpdateStatus = (e, id, tags) => {
     e.preventDefault();
+
+    const statusNames = [
+      "incoming",
+      "inprogress",
+      "ready",
+      "notified",
+      "recalled",
+    ];
+    const filteredStatus = tags.filter((status) =>
+      statusNames.includes(status)
+    );
+
+    removeOrderTags({
+      variables: {
+        id: id,
+        tags: filteredStatus,
+      },
+    });
+
     setOrderStatus(e.target.value);
 
     addOrderTags({
@@ -23,7 +49,7 @@ const selectStatus = (props) => {
       refetchQueries: [
         {
           query: GET_ORDERS,
-          variables: { tags: "tags" },
+          variables: { query },
         },
       ],
     });
@@ -36,17 +62,15 @@ const selectStatus = (props) => {
       <select
         name="status"
         value={orderStatus}
-        onChange={(e) => handleUpdateStatus(e)}
+        onChange={(e) => handleUpdateStatus(e, id, tags)}
       >
         <option value="">--Status--</option>
-        <option value="null">Cancelled</option>
-        <option value="prep">In Prep</option>
+        <option value="incoming">Incoming</option>
+        <option value="inprogress">In Progress</option>
         <option value="ready">Ready</option>
         <option value="notified">Customer Notified</option>
-        <option value="complete">Order Completed</option>
+        <option value="recalled">Recalled</option>
       </select>
-      {mutationLoading && <p>Loading...</p>}
-      {mutationError && <p>Error :( Please try again</p>}
     </div>
   );
 };
