@@ -8,8 +8,6 @@ const GetOrders = () => {
   const [method, setMethod] = useState("pickup");
   const todaysDate = format(new Date(), "yyyy/MM/dd");
 
-  // console.log("getOrders Variable", method)
-
   const query = `tag:${todaysDate} AND tag:${method}`;
 
   // Apollo data
@@ -18,7 +16,6 @@ const GetOrders = () => {
     variables: { query },
   });
 
-  // console.log("Get Orders", data);
   // If today's date is not todays's date force reload the app. Refreshes URL window => force reload of all data.
 
   return (
