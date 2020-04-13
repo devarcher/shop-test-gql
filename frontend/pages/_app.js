@@ -6,21 +6,6 @@ import Head from "next/head";
 import ApolloClient from "apollo-boost";
 import { ApolloProvider } from "react-apollo";
 
-/** Create a context object 
- * https://reacttricks.com/sharing-global-data-in-next-with-custom-app-and-usecontext-hook/
- * In the context object, put the shop. That way you can reference is throughout the application. 
- * Create the shop object when initizling from the server.  
- */
-
-
-/**
- * Cognito, which is AWS's JWT provider, potentially consider. 
- * Use this to bake in values into the JWT, so that when you're authenticated to the site, the token has the values.
- * e.g. store.
- * This is usefule because to access your back end the JWT has to be sent, and since that's always sent you have the
- * store always.
- */
-
 const client = new ApolloClient({
   fetchOptions: {
     credentials: "include",

@@ -1,4 +1,4 @@
-import React, { useState, useContext } from "react";
+import React, { useState } from "react";
 import SelectStatus from "./SelectStatus";
 // import _ from "lodash";
 import {
@@ -13,7 +13,6 @@ import {
   getCustomerNote,
   getOrderStatus,
 } from "../utils/getCustomAttributes";
-import OrderContext from './OrderContext';
 
 const Orders = (props) => {
   const { data } = props;
