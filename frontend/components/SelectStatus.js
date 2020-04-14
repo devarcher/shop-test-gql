@@ -32,6 +32,7 @@ const selectStatus = (props) => {
       statusNames.includes(status)
     );
 
+    // Possibly remove all status tags
     removeOrderTags({
       variables: {
         id: id,

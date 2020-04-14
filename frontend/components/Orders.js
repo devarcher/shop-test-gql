@@ -1,5 +1,4 @@
 import SelectStatus from "./SelectStatus";
-// import _ from "lodash";
 import {
   getCheckoutMethod,
   getDeliveryDates,
@@ -12,7 +11,7 @@ import {
   getCustomerNote,
   getOrderStatus,
 } from "../utils/getCustomAttributes";
-
+// import _ from "lodash";
 // import { format, addDays, parseISO } from 'date-fns';
 
 const Orders = (props) => {
@@ -29,13 +28,13 @@ const Orders = (props) => {
         <div className={"w-full flex"}>
           <button
             className={"btn btn-gray mr-2"}
-            onClick={() => setMethod("pickup")}
+            onClick={() => setMethod('"Store Pickup"')}
           >
             Pickups
           </button>
           <button
             className={"btn btn-gray mr-2"}
-            onClick={() => setMethod("delivery")}
+            onClick={() => setMethod('"Local Delivery"')}
           >
             Deliveries
           </button>
@@ -47,9 +46,11 @@ const Orders = (props) => {
           </button>
         </div>
       </div>
-      {data &&
+      {
         data.orders.edges.map((edge) => (
           <div key={edge.node.name}>
+            {console.log("getMethod", getCheckoutMethod(edge))}
+            {console.log("methodState", method)}
             {getCheckoutMethod(edge) === method && (
               <div className="border p-2 w-2/3 flex content-center">
                 <div className="flex w-2/3 p-2 flex-col">

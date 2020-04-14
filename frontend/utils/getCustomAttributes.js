@@ -1,10 +1,12 @@
 import _ from "lodash";
 
 export const getCheckoutMethod = (edge) => {
-  return _.chain(edge.node.customAttributes)
-    .find({ key: "Checkout-Method" })
-    .get("value")
-    .value();
+  const methods = ["Store Pickup", "Local Delivery", "Shipping"]
+  const tagsArr = edge.node.tags;
+  const orderMethod = tagsArr.filter((method) => methods.includes(method));
+  const method = orderMethod[0];
+  const quotedMethod = `${JSON.stringify(method)}`
+  return quotedMethod
 };
 export const getDeliveryDates = (edge) => {
   return _.chain(edge.node.customAttributes)
