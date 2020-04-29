@@ -17,7 +17,6 @@ const GetOrders = () => {
     variables: { query },
   });
   
-  // console.log(data)
   // If today's date is not todays's date force reload the app. Refreshes URL window => force reload of all data.
 
   return (

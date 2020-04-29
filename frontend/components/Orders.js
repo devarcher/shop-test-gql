@@ -17,10 +17,6 @@ import {
 const Orders = (props) => {
   const { data, method, setMethod, query } = props;
 
-  // If Deliverys - grab time window and order by window start time
-  // Pickups will be ordered in query
-  // Sort here, and update the setOrderDataContext if not sorted.
-
   return (
     <>
       <div>
@@ -81,37 +77,3 @@ const Orders = (props) => {
 };
 
 export default Orders;
-
-// // Local State
-// const [timeStampArray, setTimeStampArray] = useState([]);
-// // const [orderedArray, setOrderedArray] = useState([]);
-
-// useEffect(() => {
-//   const dateTimeArray = [];
-//   if(data !== undefined) {
-//     data.orders.edges.map(edge => {
-//       const deliveryDate = getDeliveryDates(edge);
-//       const deliveryTime = getDeliveryTimes(edge);
-
-//       if(deliveryTime !== undefined) {
-//         const processTimesArray = deliveryTime.split(' ');
-//         const deliveryWindowParse = processTimesArray.slice(0, 2)
-//         const deliveryDueTime = deliveryWindowParse.join(' ')
-
-//         dateTimeArray.push(new Date(`${deliveryDate} ${deliveryDueTime}`).toISOString())
-//       }
-//       dateTimeArray.sort();
-//       setTimeStampArray(dateTimeArray)
-//     })
-//   }
-// }, [method])
-
-// useEffect(() => {
-//   // setOrderedArray(orderedArray => [...orderedArray, timeStampArray])
-//   console.log("timestamparray", timeStampArray)
-// }, [timeStampArray])
-// // console.log("ordered Array", orderedArray)
-
-// const updateStatus = () => {
-//   console.log('hi')
-// }
